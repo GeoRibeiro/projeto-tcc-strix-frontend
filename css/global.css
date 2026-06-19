@@ -12,11 +12,13 @@
 
 :root{
     --azul-escuro: #02153D;
+    --roxo-claro: #D1BFE5;
     --roxo: #6A30AC;
     --roxo-escuro: #30164D;
     --ciano: #0197AF;
     --branco: #F5FAFD;
-    --quase-preto: #4C4353:
+    --quase-branco: #F5F2F9;
+    --quase-preto: #4C4353;
     --preto: #171C1F;
 }
 
@@ -51,6 +53,7 @@ p{
 .bold{
     font-size: 1.125rem;
     font-weight: bold;
+    color: var(--preto);
 }
 
 header .desktop{
@@ -129,4 +132,9 @@ header{
 
 nav.mobile.abrir{
     right: 0;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
 }
