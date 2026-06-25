@@ -10,6 +10,10 @@
     font-family: "Inter", "Geologica", sans-serif;
 }
 
+main{
+    padding-inline: clamp(1rem, 5vw, 5rem);
+}
+
 :root{
     --azul-escuro: #02153D;
     --roxo-claro: #D1BFE5;
@@ -56,7 +60,11 @@ p{
     color: var(--preto);
 }
 
-header .desktop{
+.pagina-ativa{
+    color: var(--roxo);
+}
+
+.desktop-header, .botoes-mudanca-desktop{
     display: none;
 }
 
@@ -70,62 +78,91 @@ body.escurecer::before{
 
 header{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin: 0.625rem 1.25rem;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+    margin: 0;
+    width: 100%;
     
-
-    img{
-        width: 64px;
-    }
-
-    button{
-        border: none;
-        background: none;
-        font-size: 3rem;
-        color: var(--roxo-escuro);
-    }
-
-    nav.mobile{
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 18rem;
-        height: 100vh;
-        background: var(--branco);
-        z-index: 999;
+    .mobile-header {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        padding: 1.25rem;
-        transition: right .4s ease;
-    }
-    
-    .fechar-menu{
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-        i{
-            font-size: 2.5rem;
-            color: var(--quase-preto);
+        align-items: center;
+        justify-content: space-between;
+
+        img{
+            width: 4rem;
         }
-    }
 
-    .links-mobile{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 4rem;
-        a{
-            font-family: "Inter";
-            font-weight: bold;
-            text-decoration: none;
-            color: var(--quase-preto);
-            font-size: 1rem;
-            padding: 0.5rem;
-            border-bottom: 1px solid rgba(70, 69, 84, 0.2);
+        button{
+            border: none;
+            background: none;
+            font-size: 3rem;
+            color: var(--roxo-escuro);
+        }
+
+        .mobile{
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--branco);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem;
+            transition: right .4s ease;
+        }
+        
+        .fechar-menu{
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            i{
+                font-size: 2.5rem;
+                color: var(--quase-preto);
+            }
+        }
+
+        .links-mobile{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 4rem;
+            a{
+                font-family: "Inter";
+                font-weight: bold;
+                text-decoration: none;
+                color: var(--quase-preto);
+                font-size: 1rem;
+                padding: 0.5rem;
+                border-bottom: 1px solid rgba(70, 69, 84, 0.2);
+            }
+        }
+
+        .botoes-mudanca{
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .login{
+                button{
+                    width: 10.375rem;
+                    height: 2.625rem;
+                    border: 0.125rem solid #9361CD;
+                    box-shadow: 0 0 0.338rem 0.125rem #6A30AC;
+                    border-radius: 1rem;
+                }
+            }
+            .tema{
+                img{
+                    filter: drop-shadow(0px 0px 4px #6A30AC);
+                }
+            }
         }
     }
 }
@@ -136,5 +173,149 @@ nav.mobile.abrir{
 
 footer{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    background: var(--branco);
+    box-shadow: 0px -12px 28.8px 1px rgba(60, 53, 65, 0.25);
+    img{
+        padding-top: .75rem;
+        width: 5rem;
+    }
+    nav{
+        border-top: 0.125rem solid rgba(64, 29, 103, 0.7);
+        padding-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        min-width: 90%;
+
+        a{
+            text-decoration: none;
+            h4{
+                color: var(--quase-preto);
+            }
+        }
+    }
+}
+
+
+
+
+@media screen and (min-width: 1024px) {
+    header{
+        background: white;
+        height: 5rem;
+        width: 100%;
+        filter: drop-shadow(0px 3px 34.8px rgba(76, 67, 83, 0.9));
+
+        .mobile-header{
+            display: none;
+        }
+
+        .desktop-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-inline: calc(60px - clamp(1rem, 5vw, 5rem));
+            width: 100%;
+
+            .logo-links{
+                display: flex;
+                align-items: center;
+                gap: 2.5rem;
+                justify-content: flex-start;
+                text-align: left;
+
+                .logo-img{
+                    width: 5rem;
+                }
+
+                .links-desktop{
+                    display: flex;
+                    gap: 1.875rem;
+
+                    
+
+                    a{
+                        font-family: "Geologica";
+                        font-size: 1.25rem;
+                        font-weight: bolder;
+                        color: var(--quase-preto);
+                        text-transform: uppercase;
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+
+                    a:hover{
+                        transition: .3s;
+                        color: var(--roxo);
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .botoes-mudanca-desktop{
+                display: flex;
+                gap: 1.625rem;
+                align-items: center;
+                justify-content: center;
+                
+                .tema{
+                    img{
+                        filter: drop-shadow(0px 0px 4px #6A30AC);
+                    }
+                }
+
+                .login{
+                    a{
+                        width: 10.375rem;
+                        height: 2.625rem;
+                        cursor: pointer;
+                        text-decoration: none;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        background: white;
+                        border: 0.125rem solid #9361CD;
+                        box-shadow: 0 0 0.338rem 0.125rem #6A30AC;
+                        border-radius: 1rem;
+                    }
+
+                    a:hover{
+                        transition: .5s;
+                        transform: scale(1.05);
+                        background: #9361CD;
+                        h4{
+                            color: #FFFFFF;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    footer{
+        flex-direction: row;
+        padding-inline: 3.75rem;
+        height: 6.25rem;
+        width: 100%;
+        nav{
+            flex-direction: row;
+            border: none;
+            gap: 1.75rem;
+            justify-content: center;
+
+            a:hover{
+                transition: .3s;
+                text-decoration: underline;
+                h4{
+                    color: var(--roxo);
+                }
+            }
+        }
+    }
 }

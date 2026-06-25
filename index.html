@@ -10,67 +10,97 @@
 </head>
 <body>
     <header>
-        <img src="/assets/logo.svg" alt="Logo da equipe Strix">
-        <button>
-            <i class="ph ph-list"></i>
-        </button>
+        <div class="mobile-header">
+            <a href="#">
+                <img src="/assets/logo.svg" alt="Logo da equipe Strix">
+            </a>
 
-        <nav class="mobile">
-            <button class="fechar-menu">
-                <i class="ph ph-x"></i>
+            <button id="menu-hamburguer">
+                <i class="ph ph-list"></i>
             </button>
 
-            <div class="links-mobile">
-                <a href="#">Cupcam</a>
-                <a href="#">Materiais</a>
-                <a href="#">Sobre nós</a>
-                <a href="#">Jogo</a>
-                <a href="#">Referência</a>
-            </div>
+            <nav class="mobile">
+                <button class="fechar-menu">
+                    <i class="ph ph-x"></i>
+                </button>
+
+                <div class="links-mobile">
+                    <a href="#">Cupcam</a>
+                    <a href="#">Materiais</a>
+                    <a href="#">Sobre nós</a>
+                    <a href="#">Jogo</a>
+                    <a href="#">Referência</a>
+                </div>
+                    
+                <div class="botoes-mudanca">
+                    <div class="login">
+                        <button id="alterar-tema">
+                            <h4>Criar conta</h4>
+                        </button>
+                    </div>
+
+                    <div class="tema">
+                        <img src="/assets/modo-escuro.svg" alt="">
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="desktop-header">
+            <div class="logo-links">
+
+                <a href="#">
+                    <img src="/assets/logo.svg" alt="Logo da equipe Strix" class="logo-img">
+                </a>
                 
-            <div class="tema">
-                    <button id="alterar-tema">Mudar</button>
-            </div>
-                
-            <div class="login"></div>
-        </nav>
-
-        <nav class="desktop">
-            <div class="links-desktop"> 
-                <a href="#">Cupcam</a>
-                <a href="#">Materiais</a>
-                <a href="#">Sobre nós</a>
-                <a href="#">Jogo</a>
-                <a href="#">Referência</a>
+                <nav class="desktop">
+                    <div class="links-desktop"> 
+                        <a href="#">Cupcam</a>
+                        <a href="#">Materiais</a>
+                        <a href="#">Sobre nós</a>
+                        <a href="#">Jogo</a>
+                        <a href="#">Referência</a>
+                    </div>
+                </nav>
             </div>
 
-            <div class="tema">
-                <button id="alterar-tema"></button>
-            </div>
+            <div class="botoes-mudanca-desktop">
+                <div class="tema">
+                    <img src="/assets/modo-escuro.svg" alt="">
+                </div>
 
-            <div class="login"></div>
-        </nav>
+                <div class="login">
+                    <a href="#">
+                        <h4>Criar conta</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main> 
         <div class="intro-home">
             <img src="/assets/home-assets/home-intro-img.svg" alt="Imagem ">
-            <h1 id="text-transform">Entenda sua aula com <span style="color: var(--roxo);">dados</span>, não suposições</h1>
-            <p>A Cupcam é a Tecnologia que analisa atenção, gera insights e ajuda professores a transformar foco em aprendizado real.</p>
-            
-            <div class="botoes">
-                <button id="saber-mais">
-                    <a href="#">
-                        <p>Saiba Mais</p>
-                        <i class="ph ph-arrow-right"></i>
-                    </a>
-                </button>
 
-                <button id="acessar-turma">
-                    <a href="#">
-                        <p>Acessar turma</p>
-                    </a>
-                </button>
+            <div class="textos-intro">
+                <h1 id="text-transform">Entenda sua aula com <span style="color: var(--roxo);">dados</span>, não suposições</h1>
+                <p>A Cupcam é a Tecnologia que analisa atenção, gera insights e ajuda professores a transformar foco em aprendizado real.</p>
+                
+                <div class="botoes">
+                    <button id="saber-mais">
+                        <a href="#">
+                            <p>Saiba Mais</p>
+                            <i class="ph ph-arrow-right"></i>
+                        </a>
+                    </button>
+
+                    <button id="acessar-turma">
+                        <a href="#">
+                            <p>Acessar turma</p>
+                        </a>
+                    </button>
+                </div>
+
             </div>
         </div>
 
@@ -113,8 +143,10 @@
         </div>
 
         <div class="diferencial">
-            <h4>Diferencial</h4>
-            <h3>O que nos torna únicos</h3>
+            <div class="textos-diferencial">
+                <h4>Diferencial</h4>
+                <h3>O que nos torna únicos</h3>
+            </div>
 
             <section>
                 <div id="ia-assistente">
@@ -189,30 +221,32 @@
 
         <div class="seguranca">
             <section>
-                <h2>Sua segurança é o nosso alicerce</h2>
-
-                <div class="card-seguranca">
-                    <div>
+                <div class="textos-seguranca">
+                    <h2>Sua segurança é o nosso alicerce</h2>
+                    
+                    <div class="card-seguranca">
                         <i class="ph ph-camera-slash"></i>
-                        <h4>Sem Identificação Individual</h4>
+                        <div>
+                            <h4>Sem Identificação Individual</h4>
+                            <p>Não armazenamos rostos nem nomes. A IA apenas gera vetores de movimento e padrões coletivos.</p>
+                        </div>
                     </div>
-                    <p>Não armazenamos rostos nem nomes. A IA apenas gera vetores de movimento e padrões coletivos.</p>
-                </div>
 
-                <div class="card-seguranca">
-                    <div>
+                    <div class="card-seguranca">
                         <i class="ph ph-tree-structure"></i>
-                        <h4>Processamento de Borda</h4>
+                        <div>
+                            <h4>Processamento de Borda</h4>
+                            <p>As imagens são processadas localmente na escola. Nada de vídeo bruto trafega pela nuvem.</p>
+                        </div>
                     </div>
-                    <p>As imagens são processadas localmente na escola. Nada de vídeo bruto trafega pela nuvem.</p>
-                </div>
 
-                <div class="card-seguranca">
-                    <div>
+                    <div class="card-seguranca">
                         <i class="ph ph-gavel"></i>
-                        <h4>Conformidade LGPD</h4>
+                        <div>
+                            <h4>Conformidade LGPD</h4>
+                            <p>Seguimos rigorosamente os padrões brasileiros de proteção de dados para menores.</p>
+                        </div>
                     </div>
-                    <p>Seguimos rigorosamente os padrões brasileiros de proteção de dados para menores.</p>
                 </div>
 
                 <div class="img-seguranca">
@@ -275,6 +309,7 @@
             <div class="texto-jogo">
                 <h2>Aprender também pode ser jogando.</h2>
                 <p>Conheça o Gui, nosso avatar que acompanha os alunos em missões de foco e colaboração, transformando o clima escolar em uma jornada de RPG educativa.</p>
+
                 <button>
                     <a href="#">
                         <p class="bold">Jogar demonstração</p>
@@ -293,7 +328,7 @@
         <img src="/assets/logo.svg" alt="">
         <nav>
             <a href="#">
-                <h4>Home</h4>
+                <h4 class="pagina-ativa">Home</h4>
             </a>
             <a href="#">
                 <h4>Instruções</h4>
