@@ -1,11 +1,5 @@
 @import "./global.css";
 
-#text-transform{
-    font-family: "Inter";
-    font-size: 2.25rem;
-    font-weight: bolder;
-}
-
 body{
     background: var(--branco);
 }

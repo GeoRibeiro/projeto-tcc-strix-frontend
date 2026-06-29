@@ -26,3 +26,13 @@ document.addEventListener("click", (event) => {
         fecharMenu();
     }
 });
+
+const paginaAtual = window.location.pathname.split("/").pop();
+
+document.querySelectorAll("nav a").forEach(link => {
+    const arquivo = link.getAttribute("href").split("/").pop();
+
+    if (arquivo === paginaAtual) {
+        link.classList.add("pagina-ativa");
+    }
+});

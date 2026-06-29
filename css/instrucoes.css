@@ -1,0 +1,324 @@
+@import "./global.css";
+
+body{
+    background: #ffff;
+}
+
+main{
+    padding: 0;
+
+    .inicio-guia{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3.5rem;
+        height: 85vh;
+        .textos-inicio{
+            h1{
+                margin-block: 0.75rem 2.5rem;
+            }
+            .bold{
+                color: var(--quase-preto);
+            }
+        }
+
+        .botao-inicio{
+            display: flex;
+            justify-content: center;
+            a{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                background: var(--roxo);
+                color: var(--branco);
+                border-radius: 1rem;
+                height: 3.125rem;
+                width: 14.375rem;
+                gap: 0.75rem;
+                .bold{
+                    color: var(--branco);
+                }
+                i{
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+
+    .guia-uso {
+    margin-block: 3.75rem 8.125rem;
+    padding-inline: 1rem;
+
+        .textos-guia {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 3.75rem;
+        }
+
+        .cards-guia {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.875rem;
+            max-width: 75rem;
+            margin: 0 auto;
+
+            .card-guiauso {
+                flex: 0 1 calc(50% - 0.9375rem);
+                max-width: 34rem;
+                min-width: 20rem;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 1.5rem;
+
+                background: #FBFBFB;
+                border: 1px solid #BABABA;
+                border-radius: 1.563rem;
+                padding: 1.5rem;
+                transition: .3s ease;
+
+
+                .texto-card {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+
+                    div {
+                        h2 {
+                            color: rgba(106, 48, 172, 0.7);
+                        }
+
+                        h4 {
+                            color: var(--preto);
+                            margin-top: 1.875rem;
+                        }
+
+                        i {
+                            font-size: 2.5rem;
+                            padding: .5rem;
+                            border-radius: 50%;
+                            background: var(--roxo-claro);
+                            color: var(--roxo);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .tutorial-video{
+        width: 100vw;
+        display: flex;
+        gap: 1.625rem;
+        text-align: center;
+        align-items: center;
+        margin-bottom: 5rem;
+        padding: 5rem 1rem;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--roxo-claro);
+
+        img {
+            width: 100%;
+            max-width: 50rem;
+            height: auto;
+            margin-block: 1.563rem 1.125rem;
+            display: block;
+        }
+    }
+
+    .dicas-uso {
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+        padding-inline: 1rem;
+        margin-bottom: 6.25rem;
+
+        .textos-dica {
+            gap: .75rem;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .cards-dicas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 75rem;
+            margin: 0 auto;
+            .card-dica-uso {
+                flex: 0 1 22rem;
+                min-height: 14rem;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 1.5rem;
+
+                padding: 1.5rem;
+                border-radius: .75rem;
+                background: var(--roxo-claro-sumindo);
+                border-left: .625rem solid var(--roxo);
+
+                transition: .3s ease;
+
+
+                i {
+                    width: 3rem;
+                    height: 3rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.5rem;
+                    border-radius: 50%;
+                    background: var(--roxo-claro);
+                    color: var(--roxo);
+                }
+
+                h4 {
+                    color: var(--preto);
+                }
+            }
+
+            .card-dica-uso:nth-child(even) {
+                border-color: var(--ciano);
+
+                i {
+                    color: var(--ciano);
+                }
+            }
+
+            .card-dica-uso:last-child {
+                border-color: #9B005C;
+
+                i {
+                    color: #9B005C;
+                }
+            }
+        }
+    }
+
+    .voce-recebe {
+        padding: 5rem 1rem;
+        text-align: center;
+
+        h3 {
+            margin-bottom: 1rem;
+        }
+
+        .bold{
+            color: var(--quase-preto);
+        }
+
+        .cards-recebe {
+            display: flex;
+            gap: 1.875rem;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            max-width: 75rem;
+            margin-top: 3.125rem;
+            justify-content: center;
+
+            .card-recebe-isso {
+                flex: 0 1 20.625rem;
+                background: #f3eefc;
+                border-radius: 1.25rem;
+                padding: 1.875rem;
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                gap: 1.125rem;
+                transition: 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-0.3125rem);
+                    box-shadow: 0 0.75rem 1.5625rem rgba(0, 0, 0, 0.08);
+                }
+
+                i {
+                    width: 3.125rem;
+                    height: 3.125rem;
+                    border-radius: 0.75rem;
+                    background: #d6b4ff;
+                    color: #6d28d9;
+                    font-weight: bold;
+                    font-size: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                h4 {
+                    color: var(--preto);
+                }
+            }
+        }
+    }
+}
+
+.inicio-guia::before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    left: 0;
+    height: 80vh;
+    background: linear-gradient(181.21deg, rgba(255, 255, 255, 0.2) 39.53%, rgba(206, 167, 238, 0.2) 56.22%, rgba(157, 78, 221, 0.2) 72.9%, rgba(206, 167, 238, 0.2) 107.8%);
+}
+
+@media (min-width: 1024px) {
+    main {
+        .inicio-guia{
+            align-items: center;
+            .textos-inicio{
+                max-width: 50rem;
+                #text-transform{
+                    font-size: 4.063rem;
+                }
+            }
+        }
+
+        .tutorial-video{
+            height: 100vh;
+            margin-bottom: 6.5rem;
+            img {
+                width: min(90vw, 50rem);
+                height: auto;
+            }
+        }
+
+        .dicas-uso {
+            margin-bottom: 7.875rem;
+
+            section{
+                background: var(--roxo-claro-sumindo);
+                border-radius: 1rem;
+            }
+
+            .cards-dicas {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 0;
+
+                .card-dica-uso {
+                    flex: 1;
+                    min-width: 0;
+                    max-width: none;
+                }
+            }
+        }
+
+        .voce-recebe{
+            padding-inline: 6.25rem;
+            text-align: left;
+        }
+    }
+}

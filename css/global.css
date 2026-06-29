@@ -10,18 +10,28 @@
     font-family: "Inter", "Geologica", sans-serif;
 }
 
+#text-transform{
+    font-family: "Inter";
+    font-size: 2.25rem;
+    font-weight: bolder;
+}
+
 main{
     padding-inline: clamp(1rem, 5vw, 5rem);
 }
 
 :root{
-    --azul-escuro: #02153D;
+    --branco: #F5FAFD;
+    --quase-branco: #F5F2F9;
+
+    --roxo-claro-sumindo: #F0EAF7;
     --roxo-claro: #D1BFE5;
     --roxo: #6A30AC;
     --roxo-escuro: #30164D;
+
     --ciano: #0197AF;
-    --branco: #F5FAFD;
-    --quase-branco: #F5F2F9;
+    --azul-escuro: #02153D;
+
     --quase-preto: #4C4353;
     --preto: #171C1F;
 }
@@ -60,9 +70,6 @@ p{
     color: var(--preto);
 }
 
-.pagina-ativa{
-    color: var(--roxo);
-}
 
 .desktop-header, .botoes-mudanca-desktop{
     display: none;
@@ -236,22 +243,21 @@ footer{
                     display: flex;
                     gap: 1.875rem;
 
-                    
-
                     a{
                         font-family: "Geologica";
                         font-size: 1.25rem;
                         font-weight: bolder;
-                        color: var(--quase-preto);
                         text-transform: uppercase;
                         text-decoration: none;
                         cursor: pointer;
+                        h4{
+                            color: var(--quase-preto);
+                        }
                     }
 
-                    a:hover{
+                    a>h4:hover{
                         transition: .3s;
                         color: var(--roxo);
-                        text-decoration: underline;
                     }
                 }
             }
@@ -298,6 +304,26 @@ footer{
         }
     }
 
+    nav a.pagina-ativa {
+        h4,
+        p {
+            color: var(--roxo);
+        }
+
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.4rem;
+            width: 100%;
+            height: 0.1875rem;
+            background: var(--roxo);
+            border-radius: 999px;
+        }
+    }
+
     footer{
         flex-direction: row;
         padding-inline: 3.75rem;
@@ -311,7 +337,6 @@ footer{
 
             a:hover{
                 transition: .3s;
-                text-decoration: underline;
                 h4{
                     color: var(--roxo);
                 }
