@@ -1,0 +1,299 @@
+@import "./global.css";
+
+body {
+    background: var(--branco);
+}
+
+main {
+    padding: 0;
+}
+
+.inicio-referencias {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    min-height: 80vh;
+    padding-block: 4rem;
+    padding-inline: clamp(1rem, 5vw, 5rem);
+
+    .textos-inicio {
+        h1 {
+            margin-block: 0.75rem 1.5rem;
+        }
+
+        .bold {
+            color: var(--quase-preto);
+            max-width: 34rem;
+        }
+    }
+}
+
+.card-artigo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    border: 1px solid var(--roxo-claro);
+    background: var(--branco);
+    box-shadow: 0 0.5rem 1.5rem rgba(76, 67, 83, 0.12);
+
+    .selo-arquivo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 1rem;
+        background: var(--roxo-claro);
+
+        i {
+            font-size: 2rem;
+            color: var(--roxo);
+        }
+    }
+
+    .textos-artigo {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h4 {
+            color: var(--roxo);
+        }
+
+        .titulo-artigo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            line-height: 1.719rem;
+            color: var(--preto);
+        }
+
+        .meta-artigo {
+            font-size: 0.875rem;
+            color: var(--quase-preto);
+        }
+    }
+
+    .botao-artigo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.625rem;
+        width: 100%;
+        height: 3.125rem;
+        border-radius: 1rem;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        background: var(--roxo);
+        color: var(--branco);
+        transition: transform 0.3s ease, filter 0.3s ease;
+
+        i {
+            font-size: 1.375rem;
+        }
+
+        &:hover {
+            transform: translateY(-0.125rem);
+            filter: brightness(1.08);
+        }
+    }
+}
+
+.grupo-referencias {
+    padding: 5rem clamp(1rem, 5vw, 5rem);
+
+    &.faixa {
+        background: var(--roxo-claro);
+    }
+
+    &.grupo-roxo {
+        .traco {
+            background: var(--roxo);
+        }
+
+        .card-referencia {
+            border-left-color: var(--roxo);
+
+            h4 {
+                color: var(--roxo);
+            }
+
+            .fonte-card i {
+                color: var(--roxo);
+            }
+        }
+    }
+
+    &.grupo-rosa {
+        .traco {
+            background: var(--magenta);
+        }
+
+        .card-referencia {
+            border-left-color: var(--magenta);
+
+            h4 {
+                color: var(--magenta);
+            }
+
+            .fonte-card i {
+                color: var(--magenta);
+            }
+        }
+    }
+
+    &:not(.grupo-roxo):not(.grupo-rosa) {
+        .traco {
+            background: var(--ciano);
+        }
+
+        .card-referencia {
+            border-left-color: var(--ciano);
+
+            h4 {
+                color: var(--ciano);
+            }
+
+            .fonte-card i {
+                color: var(--ciano);
+            }
+        }
+    }
+}
+
+.titulo-grupo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+
+    .traco {
+        flex-shrink: 0;
+        width: 3rem;
+        height: 0.25rem;
+        border-radius: 999px;
+    }
+
+    h3 {
+        font-size: 1.875rem;
+        font-weight: 800;
+        line-height: 2.25rem;
+        letter-spacing: -0.047rem;
+        color: var(--preto);
+    }
+}
+
+.cards-referencia {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 80rem;
+}
+
+.card-referencia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.925rem;
+    padding: 2rem 2rem 2rem 2.25rem;
+    border-radius: 0.75rem;
+    border-left: 0.25rem solid var(--ciano);
+    background: var(--branco);
+    filter: drop-shadow(0 0.375rem 1rem rgba(76, 67, 83, 0.1));
+    transition: transform 0.3s ease;
+
+    h4 {
+        font-family: "Inter";
+        font-size: 0.75rem;
+        font-weight: bold;
+        line-height: 1rem;
+        letter-spacing: 0.075rem;
+        text-transform: uppercase;
+    }
+
+    .titulo-card {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.719rem;
+        color: var(--preto);
+    }
+
+    .descricao-card {
+        font-size: 0.875rem;
+        line-height: 1.422rem;
+        color: var(--quase-preto);
+    }
+
+    .fonte-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: auto;
+        padding-top: 0.575rem;
+        text-decoration: none;
+        color: var(--quase-preto);
+
+        span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            line-height: 1rem;
+        }
+
+        i {
+            flex-shrink: 0;
+            font-size: 1.125rem;
+        }
+
+        &:hover span {
+            text-decoration: underline;
+        }
+    }
+
+    &:hover {
+        transform: translateY(-0.25rem);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .inicio-referencias {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        align-items: center;
+        gap: 4rem;
+        max-width: 80rem;
+        margin-inline: auto;
+
+        .textos-inicio {
+            #text-transform {
+                font-size: 3.5rem;
+                line-height: 1.05;
+            }
+        }
+    }
+
+    .card-artigo {
+        padding: 2.5rem;
+
+        .botao-artigo {
+            width: auto;
+            align-self: stretch;
+        }
+    }
+
+    .grupo-referencias {
+        padding-inline: 5rem;
+    }
+
+    .cards-referencia {
+        grid-template-columns: repeat(3, 1fr);
+        margin-inline: auto;
+
+        &.duas-colunas {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}

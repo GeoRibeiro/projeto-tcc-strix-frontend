@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="/css/sobre.css">
+    <script src="/script.js" defer></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre nós — Cupcam</title>
+</head>
+<body>
+    <header>
+        <div class="mobile-header">
+            <a href="/index.html">
+                <img src="/assets/logo.svg" alt="Logo da equipe Strix">
+            </a>
+
+            <button id="menu-hamburguer">
+                <i class="ph ph-list"></i>
+            </button>
+
+            <nav class="mobile">
+                <button class="fechar-menu">
+                    <i class="ph ph-x"></i>
+                </button>
+
+                <div class="links-mobile">
+                    <a href="/html/cupcam-instrucoes.html"><p>Cupcam</p></a>
+                    <a href="/html/materiais.html"><p>Materiais</p></a>
+                    <a href="/html/sobre.html" class="pagina-ativa"><p>Sobre nós</p></a>
+                    <a href="#"><p>Jogo</p></a>
+                    <a href="/html/referencias.html"><p>Referência</p></a>
+                </div>
+
+                <div class="botoes-mudanca">
+                    <div class="login">
+                        <button id="alterar-tema">
+                            <h4>Criar conta</h4>
+                        </button>
+                    </div>
+
+                    <div class="tema">
+                        <img src="/assets/modo-escuro.svg" alt="">
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="desktop-header">
+            <div class="logo-links">
+
+                <a href="/index.html">
+                    <img src="/assets/logo.svg" alt="Logo da equipe Strix" class="logo-img">
+                </a>
+
+                <nav class="desktop">
+                    <div class="links-desktop">
+                        <a href="/html/cupcam-instrucoes.html"><h4>Cupcam</h4></a>
+                        <a href="/html/materiais.html"><h4>Materiais</h4></a>
+                        <a href="/html/sobre.html" class="pagina-ativa"><h4>Sobre nós</h4></a>
+                        <a href="#"><h4>Jogo</h4></a>
+                        <a href="/html/referencias.html"><h4>Referência</h4></a>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="botoes-mudanca-desktop">
+                <div class="tema">
+                    <img src="/assets/modo-escuro.svg" alt="">
+                </div>
+
+                <div class="login">
+                    <a href="#">
+                        <h4>Criar conta</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="quem-somos">
+            <div class="titulos-secao">
+                <h4>Quem somos?</h4>
+                <h2>Conheça nossa equipe</h2>
+            </div>
+
+            <div class="equipe">
+                <div class="card-pessoa">
+                    <img src="/assets/equipe-fotos/gui.svg" alt="Foto de Guilherme Queiroz">
+                    <p class="nome-pessoa">Guilherme Queiroz</p>
+                    <p class="usuario-pessoa">@gui.qrz1</p>
+                </div>
+
+                <div class="card-pessoa">
+                    <img src="/assets/equipe-fotos/sah.svg" alt="Foto de Sarah Busch">
+                    <p class="nome-pessoa">Sarah Busch</p>
+                    <p class="usuario-pessoa">@saraha.busch</p>
+                </div>
+
+                <div class="card-pessoa">
+                    <img src="/assets/equipe-fotos/matt.svg" alt="Foto de Matheus Henrique">
+                    <p class="nome-pessoa">Matheus Henrique</p>
+                    <p class="usuario-pessoa">@_the_amazing_matt360</p>
+                </div>
+
+                <div class="card-pessoa">
+                    <img src="/assets/equipe-fotos/geo.svg" alt="Foto de Geovanna Ribeiro">
+                    <p class="nome-pessoa">Geovanna Ribeiro</p>
+                    <p class="usuario-pessoa">@itsnot_aylaa</p>
+                </div>
+
+                <div class="card-pessoa">
+                    <img src="/assets/equipe-fotos/igor.svg" alt="Foto de Igor Fernandes">
+                    <p class="nome-pessoa">Igor Fernandes</p>
+                    <p class="usuario-pessoa">@scrawl_29</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="objetivos">
+            <img src="/assets/equipe-fotos/time-cupcam.svg" alt="Equipe Cupcam reunida" class="img-time">
+
+            <div class="texto-objetivos">
+                <h4>Objetivos</h4>
+                <h2>Quem está por trás da Cupcam?</h2>
+
+                <p>Somos um time movido por um objetivo em comum: melhorar a forma como as aulas são compreendidas e evoluem. Unimos tecnologia, educação e design para transformar dados em algo realmente útil para o professor.</p>
+
+                <p>Mais do que construir um produto, estamos construindo uma nova forma de apoiar quem está todos os dias em sala de aula.</p>
+            </div>
+        </section>
+
+        <section class="contato">
+            <div class="titulos-secao">
+                <h4>Contato</h4>
+                <h2>Quer saber mais sobre o projeto?</h2>
+            </div>
+
+            <form class="form-contato" novalidate>
+                <div class="linha-inputs">
+                    <div class="campo">
+                        <label for="nome">Seu nome</label>
+                        <input type="text" id="nome" name="nome" placeholder="Como podemos te chamar?">
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">Seu e-mail</label>
+                        <input type="email" id="email" name="email" placeholder="exemplo@gmail.com">
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="assunto">Assunto</label>
+                    <input type="text" id="assunto" name="assunto" placeholder="Sobre o que você quer falar?">
+                </div>
+
+                <div class="campo">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..."></textarea>
+                </div>
+
+                <button type="submit">Enviar mensagem</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <img src="/assets/logo.svg" alt="">
+        <nav>
+            <a href="/index.html">
+                <h4>Home</h4>
+            </a>
+            <a href="/html/cupcam-instrucoes.html">
+                <h4>Instruções</h4>
+            </a>
+            <a href="/html/materiais.html">
+                <h4>Materiais</h4>
+            </a>
+            <a href="/html/sobre.html">
+                <h4 class="pagina-ativa">Sobre nós</h4>
+            </a>
+            <a href="#">
+                <h4>Jogo</h4>
+            </a>
+            <a href="#">
+                <h4>Contato</h4>
+            </a>
+        </nav>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,333 @@
+@import "./global.css";
+
+/* Evita scroll horizontal por causa do fundo full-bleed (100vw). */
+html {
+    overflow-x: clip;
+}
+
+body {
+    background: var(--branco);
+    overflow-x: clip;
+}
+
+main {
+    padding-bottom: 5rem;
+}
+
+/* Cabeçalho de seção reutilizável (subtítulo roxo + título). */
+.titulos-secao {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+
+    h4 {
+        color: #6100a4;
+    }
+
+    h2 {
+        color: var(--preto);
+    }
+}
+
+/* ===== Quem somos / equipe ===== */
+.quem-somos {
+    position: relative;
+    padding-block: 4rem;
+
+    /*
+     * Fundo desfocado full-bleed: ancorado à viewport com calc(50% - 50vw),
+     * ignora o padding do main e ocupa a largura toda da tela. Radial suave
+     * concentra o roxo atrás das fotos e esmaece para as bordas.
+     */
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: calc(50% - 50vw);
+        width: 100vw;
+        background:
+            radial-gradient(115% 80% at 50% 40%, rgba(206, 167, 238, 0.22) 0%, rgba(206, 167, 238, 0.10) 45%, rgba(206, 167, 238, 0) 74%);
+    }
+
+    .equipe {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2.5rem 2rem;
+        max-width: 60rem;
+        margin: 0 auto;
+
+        .card-pessoa {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            width: 11.25rem;
+
+            img {
+                width: 9rem;
+                height: 9rem;
+                border-radius: 50%;
+                object-fit: cover;
+                background: #d9d9d9;
+            }
+
+            .nome-pessoa {
+                font-size: 1.125rem;
+                font-weight: bold;
+                color: #6100a4;
+            }
+
+            .usuario-pessoa {
+                font-size: 1rem;
+                color: var(--quase-preto);
+            }
+        }
+    }
+}
+
+/* ===== Objetivos ===== */
+.objetivos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-block: 4rem;
+    max-width: 70rem;
+    margin: 0 auto;
+
+    .img-time {
+        width: 100%;
+        max-width: 25rem;
+        height: auto;
+        border-radius: 0.75rem;
+        object-fit: cover;
+    }
+
+    .texto-objetivos {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+
+        h2 {
+            color: var(--preto);
+        }
+
+        p {
+            color: var(--quase-preto);
+            line-height: 1.5;
+        }
+    }
+}
+
+/* ===== Contato / formulário ===== */
+.contato {
+    padding-block: 4rem;
+
+    .form-contato {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        max-width: 70rem;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+        background: rgba(97, 0, 164, 0.06);
+        border: 1px solid #e9e0f3;
+        border-radius: 1.75rem;
+
+        .linha-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+
+            label {
+                font-size: 1.125rem;
+                font-weight: bold;
+                color: rgba(123, 44, 191, 0.93);
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                font-family: "Inter", sans-serif;
+                font-size: 1rem;
+                color: var(--preto);
+                background: #fff;
+                border: 1px solid #e9e0f3;
+                border-radius: 0.75rem;
+                padding: 1rem;
+                transition: border-color .2s ease, box-shadow .2s ease;
+
+                &::placeholder {
+                    color: #6b7280;
+                }
+
+                &:focus {
+                    outline: none;
+                    border-color: var(--roxo);
+                    box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.15);
+                }
+            }
+
+            textarea {
+                min-height: 8.75rem;
+                resize: vertical;
+            }
+        }
+
+        button {
+            align-self: center;
+            width: 100%;
+            max-width: 40.625rem;
+            height: 3.5rem;
+            margin-top: 0.5rem;
+            font-family: "Inter", sans-serif;
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #fff;
+            background: #7b2cbf;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: background .2s ease, transform .2s ease;
+
+            &:hover {
+                background: #6a30ac;
+                transform: translateY(-0.125rem);
+            }
+        }
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .titulos-secao {
+        margin-bottom: 3.75rem;
+    }
+
+    .quem-somos {
+        padding-block: 3.5rem 5rem;
+
+        .equipe {
+            /* Largura para caber exatamente 3 cards por linha (3+2 como no Figma). */
+            max-width: 44rem;
+            gap: 3.5rem 4rem;
+
+            .card-pessoa {
+                width: 12rem;
+
+                img {
+                    width: 11.25rem;
+                    height: 11.25rem;
+                }
+            }
+        }
+    }
+
+    .objetivos {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 3.25rem;
+        padding-block: 5rem;
+
+        .img-time {
+            flex-shrink: 0;
+            width: 21rem;
+            max-width: none;
+            height: 19rem;
+        }
+
+        .texto-objetivos {
+            max-width: 34rem;
+            text-align: left;
+        }
+    }
+
+    .contato {
+        padding-block: 5rem;
+
+        .form-contato {
+            padding: 3.75rem;
+            border-radius: 2.4375rem;
+
+            .linha-inputs {
+                flex-direction: row;
+            }
+        }
+    }
+}
+
+
+/* ===== Modo escuro da página Sobre nós ===== */
+body.dark-mode {
+    .titulos-secao h2 {
+        color: #fff;
+    }
+
+    .quem-somos {
+        /* Brilho roxo radial suave no escuro, esmaecendo para o fundo #130f19. */
+        &::before {
+            background:
+                radial-gradient(115% 80% at 50% 40%, rgba(123, 44, 191, 0.28) 0%, rgba(123, 44, 191, 0.12) 45%, rgba(19, 15, 25, 0) 74%);
+        }
+
+        .equipe .card-pessoa {
+            .nome-pessoa {
+                color: #a844ff;
+            }
+            .usuario-pessoa {
+                color: #e1e1e1;
+            }
+        }
+    }
+
+    .objetivos .texto-objetivos {
+        h2 {
+            color: #fff;
+        }
+        p {
+            color: #e1e1e1;
+        }
+    }
+
+    .contato .form-contato {
+        background: rgba(97, 0, 164, 0.06);
+        border-color: rgba(204, 195, 216, 0.25);
+
+        .campo {
+            label {
+                color: #c7a4f0;
+            }
+
+            input,
+            textarea {
+                color: #fff;
+                background: #3c3541;
+                border-color: #ccc3d8;
+
+                &::placeholder {
+                    color: #b8b0c2;
+                }
+
+                &:focus {
+                    border-color: #a844ff;
+                    box-shadow: 0 0 0 3px rgba(168, 68, 255, 0.2);
+                }
+            }
+        }
+    }
+}
+

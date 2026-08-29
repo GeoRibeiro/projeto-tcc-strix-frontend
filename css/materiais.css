@@ -1,7 +1,7 @@
 @import "./global.css";
 
 body {
-    background: var(--branco);
+    background: var(--background);
 }
 
 main {
@@ -38,12 +38,12 @@ main {
                     max-width: 30rem;
 
                     i {
-                        color: var(--roxo);
+                        color: var(--cor-principal);
                         font-size: 1.25rem;
                     }
 
                     p {
-                        color: var(--quase-preto);
+                        color: var(--texto-italico);
                     }
                 }
             }
@@ -54,7 +54,7 @@ main {
                 align-items: center;
                 width: 15.625rem;
                 height: 2.5rem;
-                background: var(--roxo-claro);
+                background: var(--fundo-opaco);
                 border-radius: 1rem;
             }
         }
@@ -86,7 +86,7 @@ main {
                 align-items: center;
                 gap: 1.25rem;
                 padding: 1.25rem;
-                background: #fff;
+                background: var(--background-header);
                 border-radius: 1.5625rem;
                 text-align: center;
 
@@ -122,7 +122,7 @@ main {
                             gap: .4rem;
 
                             padding: .6rem 1rem;
-                            background: var(--roxo-claro);
+                            background: var(--fundo-opaco);
                             border-radius: 999px;
                             white-space: nowrap;
                             margin: 0;
@@ -135,7 +135,7 @@ main {
                             gap: .4rem;
                             padding: .6rem 1rem;
                             border-radius: 999px;
-                            background: var(--roxo);
+                            background: var(--cor-secundaria);
                             text-decoration: none;
                             flex-shrink: 0;
 
@@ -173,10 +173,25 @@ main {
 @media (min-width: 1024px) {
     main {
         .apresentacao {
-            margin-block: 9.5rem;
+            position: relative;
+            margin-block: 9.5rem 12rem;
             flex-direction: row;
             padding-inline: 2rem;
             justify-content: space-between;
+            align-items: center;
+            overflow: visible;
+
+            &::before {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                top: -16rem;
+                right: -12rem;
+                width: 57rem;
+                height: 56.4rem;
+                border-radius: 50%;
+                background: var(--fundo-opaco);
+            }
 
             .texto-apresen {
                 h1{
@@ -203,78 +218,102 @@ main {
             margin-bottom: 6.25rem;
 
             section {
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                row-gap: 4rem;
-                justify-items: center;
-                align-items: start;
-                max-width: 68rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-content: start;
+                row-gap: 2.375rem;
+                max-width: 60.625rem;
                 margin: 3.75rem auto 0;
 
-                
-
                 .card-tecno {
+                    position: relative;
+                    width: 23.75rem;
+                    height: 15.5rem;
                     max-width: none;
-                    width:100%;
-                    flex-direction: row;
-                    min-height: 15.625rem;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
+                    min-height: 0;
+                    flex: 0 0 auto;
+                    display: block;
                     text-align: left;
-                    padding: 1.5rem;
+                    padding: 1.875rem 1.5rem;
+                    overflow: hidden;
 
-                    .textos-card{
-                        .preco-link{
-                            display: flex;
+                    .textos-card {
+                        position: relative;
+                        z-index: 1;
+                        align-items: flex-start;
+                        text-align: left;
+                        height: 100%;
+                        justify-content: flex-start;
+                        gap: 0.75rem;
+                        max-width: 55%;
+
+                        h3 {
+                            margin-bottom: 0;
+                        }
+
+                        > p {
+                            margin-bottom: 0;
+                            min-height: 0;
+                        }
+
+                        .preco-link {
                             justify-content: flex-start;
-                            a{
+                            margin-top: auto;
+                            width: auto;
+                            a {
                                 gap: .5rem;
                             }
                         }
                     }
+
+                    .textos-card p,
+                    .textos-card h3 {
+                        align-items: flex-start;
+                        text-align: left;
+                    }
+
+                    img {
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        transform: translateY(-50%);
+                        width: auto;
+                        height: auto;
+                    }
                 }
 
-                .card-tecno .textos-card {
-                    align-items: flex-start;
-                    text-align: left;
-                }
-                
-                .textos-card p,
-                .textos-card h3{
-                    align-items: flex-start;
-                    text-align: left;
+                .card-tecno:nth-child(1),
+                .card-tecno:nth-child(4) {
+                    width: 33.375rem;
                 }
 
-                .card-tecno img {
-                    width: 9rem;
-                }
-
-                .card-tecno:nth-child(1){
-                    width: 100%;
-                    max-width: 34.375rem;
-                    justify-self: start;
+                .card-tecno:nth-child(1) img {
+                    width: 17rem;
+                    right: -0.5rem;
                 }
 
                 .card-tecno:nth-child(2) {
-                    width: 100%;
-                    max-width: 27.5rem;
-                    justify-self: end;
-                    img{
-                        width: 100px;
+                    .textos-card { max-width: 64%; }
+                    img {
+                        width: 12rem;
+                        top: -1.5rem;
+                        right: -1.5rem;
+                        transform: none;
                     }
                 }
 
                 .card-tecno:nth-child(3) {
-                    width: 100%;
-                    max-width: 27.5rem;
-                    justify-self: start;
+                    .textos-card { max-width: 68%; }
+                    img {
+                        width: 5.5rem;
+                        right: 1rem;
+                    }
                 }
 
-                .card-tecno:nth-child(4){
-                    width: 100%;
-                    max-width: 34.375rem;
-                    justify-self: end;
+                .card-tecno:nth-child(4) img {
+                    width: 13.7rem;
+                    right: 0.5rem;
                 }
             }
         }

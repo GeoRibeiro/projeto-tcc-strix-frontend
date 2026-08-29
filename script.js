@@ -1,11 +1,42 @@
+const body = document.body;
+
+// =========================
+// TEMA
+// =========================
+
+function aplicarTema() {
+    const temaSalvo = localStorage.getItem("tema");
+
+    if (temaSalvo === "escuro") {
+        body.classList.add("dark-mode");
+    } else {
+        body.classList.remove("dark-mode");
+    }
+}
+
+aplicarTema();
+
+const botoesTema = document.querySelectorAll(".tema");
+
+botoesTema.forEach(botao => {
+    botao.addEventListener("click", () => {
+        const modoEscuro = body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "tema",
+            modoEscuro ? "escuro" : "claro"
+        );
+    });
+});
+
+
+// =========================
+// MENU MOBILE
+// =========================
+
 const botaoAbrir = document.querySelector("#menu-hamburguer");
 const botaoFechar = document.querySelector(".fechar-menu");
-
-const body = document.body;
 const nav = document.querySelector("nav.mobile");
-
-botaoAbrir.addEventListener("click", abrirMenu);
-botaoFechar.addEventListener("click", fecharMenu);
 
 function abrirMenu() {
     body.classList.add("escurecer");
@@ -17,7 +48,17 @@ function fecharMenu() {
     nav.classList.remove("abrir");
 }
 
-document.addEventListener("click", (event) => {
+if (botaoAbrir && nav) {
+    botaoAbrir.addEventListener("click", abrirMenu);
+}
+
+if (botaoFechar) {
+    botaoFechar.addEventListener("click", fecharMenu);
+}
+
+document.addEventListener("click", event => {
+    if (!nav || !botaoAbrir) return;
+
     const clicouFora =
         !nav.contains(event.target) &&
         !botaoAbrir.contains(event.target);
@@ -27,10 +68,19 @@ document.addEventListener("click", (event) => {
     }
 });
 
+
+// =========================
+// PÁGINA ATUAL
+// =========================
+
 const paginaAtual = window.location.pathname.split("/").pop();
 
 document.querySelectorAll("nav a").forEach(link => {
-    const arquivo = link.getAttribute("href").split("/").pop();
+    const href = link.getAttribute("href");
+
+    if (!href || href === "#") return;
+
+    const arquivo = href.split("/").pop();
 
     if (arquivo === paginaAtual) {
         link.classList.add("pagina-ativa");
