@@ -1,0 +1,33 @@
+# Claude Code / agentes de IA
+.claude/
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+.cursor/
+.cursorrules
+.aider*
+.superpowers/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+*.key
+*.pem
+
+# Dependências
+node_modules/
+
+# Sistema operacional
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Build e logs
+dist/
+build/
+*.log

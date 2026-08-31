@@ -36,7 +36,7 @@ main {
     gap: 1.25rem;
     padding: 2rem;
     border-radius: 1.25rem;
-    border: 1px solid var(--roxo-claro);
+    border: 1px solid var(--fundo-opaco);
     background: var(--branco);
     box-shadow: 0 0.5rem 1.5rem rgba(76, 67, 83, 0.12);
 
@@ -47,7 +47,7 @@ main {
         width: 3.5rem;
         height: 3.5rem;
         border-radius: 1rem;
-        background: var(--roxo-claro);
+        background: var(--fundo-opaco);
 
         i {
             font-size: 2rem;
@@ -68,7 +68,7 @@ main {
             font-size: 1.25rem;
             font-weight: bold;
             line-height: 1.719rem;
-            color: var(--preto);
+            color: var(--texto-principal);
         }
 
         .meta-artigo {
@@ -107,7 +107,7 @@ main {
     padding: 5rem clamp(1rem, 5vw, 5rem);
 
     &.faixa {
-        background: var(--roxo-claro);
+        background: var(--fundo-opaco);
     }
 
     &.grupo-roxo {
@@ -183,7 +183,7 @@ main {
         font-weight: 800;
         line-height: 2.25rem;
         letter-spacing: -0.047rem;
-        color: var(--preto);
+        color: var(--texto-principal);
     }
 }
 
@@ -218,7 +218,7 @@ main {
         font-size: 1.25rem;
         font-weight: bold;
         line-height: 1.719rem;
-        color: var(--preto);
+        color: var(--texto-principal);
     }
 
     .descricao-card {

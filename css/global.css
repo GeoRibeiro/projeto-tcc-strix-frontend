@@ -2,18 +2,13 @@
 @import url('https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Inter", "Geologica", sans-serif;
-}
-
-#text-transform {
-    font-family: "Inter";
-    font-size: 2.25rem;
-    font-weight: bolder;
 }
 
 main {
@@ -436,7 +431,7 @@ nav a.pagina-ativa {
     nav a.pagina-ativa {
         h4,
         p {
-            color: var(--roxo);
+            color: var(--cor-principal);
         }
 
         position: relative;

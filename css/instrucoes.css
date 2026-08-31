@@ -122,7 +122,7 @@ main{
         padding: 5rem 1rem;
         flex-direction: column;
         justify-content: center;
-        background: var(--roxo-claro);
+        background: var(--fundo-opaco);
 
         img {
             width: 100%;
@@ -258,7 +258,7 @@ main{
                 }
 
                 h4 {
-                    color: var(--preto);
+                    color: var(--texto-principal);
                 }
             }
         }
@@ -269,9 +269,9 @@ main{
     content: "";
     position: absolute;
     z-index: -1;
+    inset: 0;
     width: 100vw;
     left: 0;
-    height: 80vh;
     background: linear-gradient(
         181.21deg,
         rgba(255, 255, 255, 0.2) 39.53%,
@@ -300,6 +300,9 @@ body.dark-mode main .voce-recebe .cards-recebe .card-recebe-isso:hover {
                 max-width: 50rem;
                 #text-transform{
                     font-size: 4.063rem;
+                    font-family: "Geologica";
+                    line-height: 1;
+                    font-weight: 400;
                 }
             }
         }
@@ -317,7 +320,7 @@ body.dark-mode main .voce-recebe .cards-recebe .card-recebe-isso:hover {
             margin-bottom: 7.875rem;
 
             section{
-                background: var(--roxo-claro-sumindo);
+                background: linear-gradient(180deg, var(--fundo-opaco) 0%, transparent 100%);
                 border-radius: 1rem;
             }
 

@@ -30,7 +30,7 @@ main {
     }
 
     h2 {
-        color: var(--preto);
+        color: var(--texto-principal);
     }
 }
 
@@ -118,7 +118,7 @@ main {
         text-align: center;
 
         h2 {
-            color: var(--preto);
+            color: var(--texto-principal);
         }
 
         p {
@@ -166,7 +166,7 @@ main {
                 width: 100%;
                 font-family: "Inter", sans-serif;
                 font-size: 1rem;
-                color: var(--preto);
+                color: var(--texto-principal);
                 background: #fff;
                 border: 1px solid #e9e0f3;
                 border-radius: 0.75rem;
