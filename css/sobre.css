@@ -164,7 +164,7 @@ main {
             input,
             textarea {
                 width: 100%;
-                font-family: "Inter", sans-serif;
+                font-family: var(--fonte-texto);
                 font-size: 1rem;
                 color: var(--texto-principal);
                 background: #fff;
@@ -196,9 +196,10 @@ main {
             max-width: 40.625rem;
             height: 3.5rem;
             margin-top: 0.5rem;
-            font-family: "Inter", sans-serif;
+            font-family: var(--fonte-texto);
             font-size: 1.125rem;
-            font-weight: bold;
+            /* Mesmo SemiBold dos demais botoes (global.css). */
+            font-weight: 600;
             color: #fff;
             background: #7b2cbf;
             border: none;

@@ -94,9 +94,14 @@ main{
                             color: var(--cor-principal);
                         }
 
+                        /* Titulo de card segue o padrao da home: Montserrat
+                           SemiBold em caixa normal, sem o espacamento de rotulo. */
                         h4 {
                             color: var(--texto-principal);
                             margin-top: 1.875rem;
+                            font-size: 1.0625rem;
+                            text-transform: capitalize;
+                            letter-spacing: 0;
                         }
 
                         i {
@@ -185,6 +190,13 @@ main{
 
                 h4 {
                     color: var(--cor-secundaria);
+                    font-size: 1.0625rem;
+                    text-transform: capitalize;
+                    letter-spacing: 0;
+                }
+
+                p {
+                    font-size: 0.875rem;
                 }
             }
 
@@ -259,6 +271,13 @@ main{
 
                 h4 {
                     color: var(--texto-principal);
+                    font-size: 1.0625rem;
+                    text-transform: capitalize;
+                    letter-spacing: 0;
+                }
+
+                p {
+                    font-size: 0.875rem;
                 }
             }
         }
@@ -300,7 +319,9 @@ body.dark-mode main .voce-recebe .cards-recebe .card-recebe-isso:hover {
                 max-width: 50rem;
                 #text-transform{
                     font-size: 4.063rem;
-                    font-family: "Geologica";
+                    /* So Cal Sans, sem fallback: com a Montserrat na pilha o titulo
+                       cairia nela e sairia mais grosso que o design. */
+                    font-family: "Cal Sans";
                     line-height: 1;
                     font-weight: 400;
                 }
