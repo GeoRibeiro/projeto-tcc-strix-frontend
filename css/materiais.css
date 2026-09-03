@@ -295,11 +295,11 @@ main {
 
                 .card-tecno:nth-child(2) {
                     .textos-card { max-width: 64%; }
+                    /* O icone do Gemini e quadrado, ao contrario do logo largo
+                       que ocupava este card antes; menor e sem sangrar para a borda. */
                     img {
-                        width: 12rem;
-                        top: -1.5rem;
-                        right: -1.5rem;
-                        transform: none;
+                        width: 7rem;
+                        right: 1rem;
                     }
                 }
 

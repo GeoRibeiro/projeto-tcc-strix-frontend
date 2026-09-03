@@ -1,14 +1,49 @@
 @import url('https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css');
 @import url('https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter", "Geologica", sans-serif;
+    font-family: var(--fonte-texto);
+}
+
+/* Rolagem suave nos links de ancora da propria pagina. */
+html {
+    scroll-behavior: smooth;
+    /* Respiro acima do alvo para o titulo nao encostar no topo da tela. */
+    scroll-padding-top: 2rem;
+}
+
+/* Quem pediu menos animacao no sistema recebe o salto direto. */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Entrada por scroll: o elemento nasce deslocado e a classe "aparecer",
+   aplicada pelo script quando ele entra na tela, o leva para a posicao final. */
+.revelar {
+    opacity: 0;
+    transform: translateY(1.875rem);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.revelar.aparecer {
+    opacity: 1;
+    transform: none;
+}
+
+/* Quem pediu menos animacao no sistema ve tudo ja posicionado. */
+@media (prefers-reduced-motion: reduce) {
+    .revelar {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 main {
@@ -22,6 +57,10 @@ body {
 }
 
 :root {
+    /* Cal Sans so tem peso 400 real; pesos maiores sao sintetizados pelo navegador. */
+    --fonte-titulo: "Cal Sans", "Montserrat", sans-serif;
+    --fonte-texto: "Montserrat", sans-serif;
+
     --branco: #fff;
     --magenta: #c8358e;
     --ciano: #33e4f8;
@@ -29,14 +68,20 @@ body {
 
     --fundo-transp: var(--fundo-opaco);
 
-    --background: #F5FAFD;
+    --background: #FAFBFF;
     --background-header: #FFFFFF;
+
+    /* Cards glass: gradiente lilas suave + borda clara, medidos do mockup. */
+    --card-glass: linear-gradient(155deg, #F5EDFC 0%, #EDE6F8 100%);
+    --card-glass-borda: rgba(255, 255, 255, 0.7);
+    --card-glass-sombra: 0 0.5rem 1.5rem rgba(106, 48, 172, 0.08);
+    --ia-gradiente: linear-gradient(160deg, #B98DD6 0%, #9A6BC4 55%, #8B57BC 100%);
 
     --paragrafos-especiais: #E9E0F3;
     --paragrafo: var(--cor-principal);
     --texto-principal: #171C1F;
     --texto-italico: #4C4353;
-    --titulo-destacado: #2B0052;
+    --titulo-destacado: #330454;
 
     --cor-principal: #6A30AC;
     --cor-secundaria: var(--cor-principal);
@@ -56,7 +101,12 @@ body.dark-mode {
 
     --background: #181818;
     --background-header: #202020;
-    
+
+    --card-glass: linear-gradient(155deg, #2C3A3D 0%, #253134 100%);
+    --card-glass-borda: rgba(255, 255, 255, 0.08);
+    --card-glass-sombra: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
+    --ia-gradiente: linear-gradient(160deg, #0091A1 0%, #00707D 55%, #005761 100%);
+
     --fundo-transp: rgb(106, 148, 154);
 
     --paragrafos-especiais: #D9F6F9;
@@ -83,41 +133,65 @@ body.dark-mode .tema img {
     content: url("/assets/modo-claro.svg");
 }
 
+/* Titulos usam Cal Sans; textos e mini-titulos usam Montserrat (Regular/SemiBold). */
+h1,
+h2,
+h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+}
+
 h1 {
     font-size: 4.063rem;
-    font-family: "Geologica";
     color: var(--texto-principal);
 }
 
 h2 {
     font-size: 2.25rem;
-    font-weight: bolder;
     color: var(--titulo-destacado);
 }
 
 h3 {
     font-size: 1.875rem;
-    font-weight: bold;
     color: var(--texto-principal);
 }
 
 h4 {
-    font-family: "Geologica";
     font-size: 1.25rem;
-    font-weight: bolder;
+    font-weight: 600;
     color: var(--cor-principal);
     text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* Rotulo de secao em caixa normal, com o peso leve usado no design. */
+.label-suave {
+    font-size: 1.0625rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.02em;
 }
 
 p {
     font-size: 1rem;
+    font-weight: 400;
     color: var(--texto-italico);
+    line-height: 1.5;
 }
 
 .bold {
     font-size: 1.125rem;
-    font-weight: bold;
+    font-weight: 600;
     color: var(--texto-principal);
+}
+
+/* Botoes em Montserrat SemiBold, conforme o design. */
+button,
+button p,
+.login a h4,
+.botoes a p {
+    font-family: var(--fonte-texto);
+    font-weight: 600;
 }
 
 a {
@@ -211,7 +285,7 @@ header {
                 margin-top: 4rem;
 
                 a {
-                    font-family: "Inter";
+                    font-family: var(--fonte-texto);
                     font-weight: bold;
                     text-decoration: none;
                     color: var(--texto-italico);
@@ -335,7 +409,7 @@ nav a.pagina-ativa {
                     gap: 1.875rem;
 
                     a {
-                        font-family: "Geologica";
+                        font-family: var(--fonte-texto);
                         font-size: 1.25rem;
                         font-weight: bolder;
                         text-transform: uppercase;
