@@ -4,16 +4,29 @@ body {
     background: var(--background);
 }
 
+/* Cal Sans so tem peso 400 real, entao o negrito do "Cup" vem da Montserrat,
+   que tem os pesos de verdade. */
+.destaque-titulo {
+    font-family: var(--fonte-texto);
+    font-weight: 700;
+    color: var(--cor-principal);
+}
+
 main {
     .apresentacao {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
+        /* Respiro entre o header e o primeiro bloco do conteudo. */
+        padding-top: 2.5rem;
         margin-bottom: 9.375rem;
 
+        /* Altura livre: o PNG recortado tem proporcao propria e a altura fixa
+           anterior o esticava. */
         img {
             width: 20rem;
-            height: 16rem;
+            max-width: 100%;
+            height: auto;
             margin-bottom: 2rem;
         }
 
@@ -229,13 +242,17 @@ main {
                 .card-tecno {
                     position: relative;
                     width: 23.75rem;
-                    height: 15.5rem;
+                    /* Altura fixa cortava o texto dos cards mais longos; o
+                       minimo mantem o alinhamento da grade e o card cresce
+                       quando o conteudo pede. */
+                    min-height: 15.5rem;
+                    height: auto;
                     max-width: none;
-                    min-height: 0;
                     flex: 0 0 auto;
                     display: block;
                     text-align: left;
                     padding: 1.875rem 1.5rem;
+                    /* A arte sangra para fora do card e e recortada na borda. */
                     overflow: hidden;
 
                     .textos-card {
@@ -243,10 +260,13 @@ main {
                         z-index: 1;
                         align-items: flex-start;
                         text-align: left;
-                        height: 100%;
+                        /* min-height em vez de height fixa: acompanha o card
+                           quando o texto cresce e ainda empurra o preco para baixo. */
+                        min-height: 100%;
                         justify-content: flex-start;
                         gap: 0.75rem;
-                        max-width: 55%;
+                        /* Faixa livre a direita para a arte do card. */
+                        max-width: 60%;
 
                         h3 {
                             margin-bottom: 0;
@@ -257,10 +277,13 @@ main {
                             min-height: 0;
                         }
 
+                        /* Preco e botao lado a lado na base do card. */
                         .preco-link {
                             justify-content: flex-start;
                             margin-top: auto;
+                            padding-top: 1.25rem;
                             width: auto;
+
                             a {
                                 gap: .5rem;
                             }
@@ -273,13 +296,18 @@ main {
                         text-align: left;
                     }
 
+                    /* Arte alinhada pelo topo do bloco de texto, transbordando
+                       pela direita como no design. */
                     img {
                         position: absolute;
                         top: 50%;
-                        right: 0;
+                        right: -2.5rem;
                         transform: translateY(-50%);
-                        width: auto;
+                        width: 14rem;
                         height: auto;
+                        /* Fica atras do texto caso a arte cresca demais. */
+                        z-index: 0;
+                        pointer-events: none;
                     }
                 }
 
@@ -288,32 +316,28 @@ main {
                     width: 33.375rem;
                 }
 
+                /* Cards largos comportam arte maior sem espremer o texto. */
                 .card-tecno:nth-child(1) img {
-                    width: 17rem;
-                    right: -0.5rem;
-                }
-
-                .card-tecno:nth-child(2) {
-                    .textos-card { max-width: 64%; }
-                    /* O icone do Gemini e quadrado, ao contrario do logo largo
-                       que ocupava este card antes; menor e sem sangrar para a borda. */
-                    img {
-                        width: 7rem;
-                        right: 1rem;
-                    }
-                }
-
-                .card-tecno:nth-child(3) {
-                    .textos-card { max-width: 68%; }
-                    img {
-                        width: 5.5rem;
-                        right: 1rem;
-                    }
+                    width: 19rem;
+                    right: -2rem;
                 }
 
                 .card-tecno:nth-child(4) img {
-                    width: 13.7rem;
-                    right: 0.5rem;
+                    width: 16rem;
+                    right: -1.5rem;
+                }
+
+                /* Gemini: a estrela fica inteira, encostada na borda direita.
+                   A largura do card acompanha a grade (mesma do OpenCV ao lado). */
+                .card-tecno:nth-child(2) {
+                    .textos-card {
+                        max-width: 58%;
+                    }
+
+                    img {
+                        width: 11rem;
+                        right: -0.5rem;
+                    }
                 }
             }
         }

@@ -1,0 +1,355 @@
+@import "./global.css";
+
+/*
+ * Tela de login.
+ * Estrutura espelhada em criar-conta.css: aqui a arte do mascote fica a
+ * esquerda e o formulario a direita.
+ */
+
+/* Sem header e sem footer aqui, entao a pagina ocupa a tela inteira. */
+html,
+body.pagina-auth {
+    height: 100%;
+}
+
+body.pagina-auth {
+    background: var(--background);
+}
+
+/* Botao de tema flutuante, ja que estas telas nao tem o header do site. */
+.tema-flutuante {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 10;
+    cursor: pointer;
+
+    img {
+        width: 2rem;
+        filter: drop-shadow(0 0 4px var(--cor-principal));
+    }
+
+    img:hover {
+        transition: 0.2s;
+        transform: scale(1.1);
+    }
+}
+
+.auth {
+    /* Anula o padding lateral que global.css aplica em todo main. */
+    padding-inline: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Faixa/arte do mascote ===== */
+.auth-arte {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem 1.5rem 4rem;
+    background: linear-gradient(160deg, #E7D3F7 0%, #DEC5F3 100%);
+
+    /* No mobile a arte e so a faixa colorida do topo; o mascote entra no desktop. */
+    .auth-mascote {
+        display: none;
+    }
+
+    /* No mobile o logo mora na faixa; no desktop ele volta para a coluna do form. */
+    .auth-logo-mobile {
+        display: block;
+        /* Vem depois do mascote no HTML, mas abre a faixa visualmente. */
+        order: -1;
+
+        img {
+            width: 3.5rem;
+        }
+    }
+
+    .auth-boas-vindas {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h1 {
+            font-size: 2.25rem;
+            line-height: 1.15;
+            color: var(--cor-principal);
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--cor-principal);
+        }
+    }
+}
+
+/* ===== Coluna do formulario ===== */
+.auth-form {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 1.5rem 2.5rem;
+    background: var(--background);
+
+    /* Sobe sobre a faixa lilas para criar a curva do mockup mobile. */
+    margin-top: -2.5rem;
+    border-radius: 2.5rem 2.5rem 0 0;
+
+    .auth-logo {
+        display: none;
+
+        img {
+            width: 4.3rem;
+        }
+    }
+
+    .auth-conteudo {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .auth-titulos {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h2 {
+            color: var(--texto-principal);
+        }
+
+        p {
+            font-size: 0.9375rem;
+        }
+    }
+
+    .auth-rodape {
+        margin-top: auto;
+        text-align: center;
+        font-size: 0.9375rem;
+
+        a {
+            font-weight: 600;
+            color: var(--cor-principal);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+/* ===== Formulario ===== */
+.form-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+
+    .campo {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--texto-principal);
+        }
+
+        /*
+         * Input so com a linha de baixo, como no design. O padding lateral fica
+         * zerado para o placeholder alinhar com o label.
+         */
+        input {
+            width: 100%;
+            font-family: var(--fonte-texto);
+            font-size: 1rem;
+            color: var(--texto-principal);
+            background: transparent;
+            border: none;
+            border-bottom: 0.0625rem solid var(--texto-principal);
+            border-radius: 0;
+            padding: 0.5rem 0;
+            transition: border-color .2s ease;
+
+            &::placeholder {
+                color: var(--texto-italico);
+            }
+
+            &:focus {
+                outline: none;
+                border-bottom-color: var(--cor-principal);
+            }
+        }
+    }
+
+    /* O olho fica dentro da linha do input, encostado na direita. */
+    .campo-senha {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input {
+            padding-right: 2.25rem;
+        }
+
+        .mostrar-senha {
+            position: absolute;
+            right: 0;
+            bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--texto-italico);
+
+            i {
+                font-size: 1.25rem;
+            }
+        }
+
+        .mostrar-senha:hover {
+            color: var(--cor-principal);
+        }
+    }
+
+    .link-senha {
+        align-self: flex-end;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--cor-principal);
+        text-decoration: none;
+    }
+
+    .link-senha:hover {
+        text-decoration: underline;
+    }
+
+    .botao-auth {
+        align-self: center;
+        width: 100%;
+        max-width: 20rem;
+        height: 3.25rem;
+        margin-top: 0.75rem;
+        font-family: var(--fonte-texto);
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--branco);
+        background: var(--cor-principal);
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: background .2s ease, transform .2s ease;
+
+        &:hover {
+            background: var(--cor-secundaria);
+            transform: translateY(-0.125rem);
+        }
+    }
+}
+
+
+@media screen and (min-width: 1024px) {
+
+    /* Duas colunas lado a lado ocupando exatamente a tela: a pagina inteira
+       cabe sem rolagem. */
+    .auth {
+        flex-direction: row;
+        height: 100vh;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    /*
+     * As artes do mascote ja vem com o fundo roxo embutido, entao a coluna
+     * inteira e a propria imagem: "cover" preenche a altura da tela sem barra.
+     */
+    .auth-arte {
+        flex: 1 1 45%;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        overflow: hidden;
+        background: linear-gradient(160deg, #C9A8E9 0%, #A97BD8 55%, #9B63D2 100%);
+
+        .auth-mascote {
+            display: block;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            object-fit: cover;
+        }
+
+        /* Textos de boas-vindas e logo da faixa so existem na versao mobile. */
+        .auth-boas-vindas,
+        .auth-logo-mobile {
+            display: none;
+        }
+    }
+
+    .auth-form {
+        flex: 1 1 55%;
+        /* A coluna rola sozinha se a tela for muito baixa, sem esticar a pagina. */
+        height: 100%;
+        overflow-y: auto;
+        justify-content: flex-start;
+        gap: 2rem;
+        padding: 2rem clamp(3rem, 8vw, 8rem);
+        margin-top: 0;
+        border-radius: 0;
+
+        /* Logo ancorada no inicio da coluna, alinhada com o formulario. */
+        .auth-logo {
+            display: block;
+            align-self: flex-start;
+
+            img {
+                width: 3.5rem;
+            }
+        }
+
+        /* Ocupa a sobra e centraliza o formulario verticalmente. */
+        .auth-conteudo {
+            max-width: 26rem;
+            width: 100%;
+            margin: 0 auto;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .auth-titulos {
+            text-align: center;
+        }
+    }
+}
+
+
+/* ===== Modo escuro =====
+ * Segue o padrao do site: o ciano dos tokens no lugar do roxo do modo claro.
+ * So ficam aqui os ajustes que os tokens nao resolvem sozinhos.
+ */
+body.dark-mode.pagina-auth {
+    /* Faixa do topo no mobile, na cor do tema escuro. */
+    .auth-arte {
+        background: linear-gradient(160deg, #24393C 0%, #1B2C2F 100%);
+    }
+
+    .form-auth .campo input {
+        border-bottom-color: var(--texto-italico);
+
+        &::placeholder {
+            color: var(--texto-italico);
+        }
+    }
+}

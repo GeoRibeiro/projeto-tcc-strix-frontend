@@ -118,7 +118,9 @@ main{
     }
 
     .tutorial-video{
-        width: 100vw;
+        /* Ocupa a largura do fluxo: com 100vw a barra de rolagem entrava na
+           conta e a faixa vazava para fora da tela. */
+        width: auto;
         display: flex;
         gap: 1.625rem;
         text-align: center;
@@ -289,7 +291,7 @@ main{
     position: absolute;
     z-index: -1;
     inset: 0;
-    width: 100vw;
+    width: 100dvw;
     left: 0;
     background: linear-gradient(
         181.21deg,
@@ -339,11 +341,6 @@ body.dark-mode main .voce-recebe .cards-recebe .card-recebe-isso:hover {
 
         .dicas-uso {
             margin-bottom: 7.875rem;
-
-            section{
-                background: linear-gradient(180deg, var(--fundo-opaco) 0%, transparent 100%);
-                border-radius: 1rem;
-            }
 
             .cards-dicas {
                 display: flex;
