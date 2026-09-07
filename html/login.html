@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/script.js" defer></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Cupcam</title>
+</head>
+<body class="pagina-auth">
+    <div class="tema tema-flutuante">
+        <img src="/assets/modo-escuro.svg" alt="Alternar entre modo claro e escuro">
+    </div>
+
+    <main class="auth">
+        <!-- No desktop esta coluna vira a arte lateral; no mobile ela vira a faixa do topo. -->
+        <div class="auth-arte">
+            <img src="/assets/mascote/mascote-dormindo.png" alt="Mascote da Cupcam dormindo" class="auth-mascote">
+
+            <a href="/index.html" class="auth-logo auth-logo-mobile">
+                <img src="/assets/logo.png" alt="Logo da equipe Strix">
+            </a>
+
+            <div class="auth-boas-vindas">
+                <h1>Bem-vindo de Volta!</h1>
+                <p>Entenda suas aulas com dados, não suposições.</p>
+            </div>
+        </div>
+
+        <div class="auth-form">
+            <a href="/index.html" class="auth-logo">
+                <img src="/assets/logo.png" alt="Logo da equipe Strix">
+            </a>
+
+            <div class="auth-conteudo">
+                <div class="auth-titulos">
+                    <h2>Bem Vindo de Volta!</h2>
+                    <p>Acesse sua conta para analisar suas aulas</p>
+                </div>
+
+                <form class="form-auth" novalidate>
+                    <div class="campo">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" autocomplete="email" placeholder="nome@exemplo.com">
+                    </div>
+
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+
+                        <div class="campo-senha">
+                            <input type="password" id="senha" name="senha" autocomplete="current-password" placeholder="••••••••">
+
+                            <button type="button" class="mostrar-senha" data-alvo="senha" aria-label="Mostrar senha">
+                                <i class="ph ph-eye"></i>
+                            </button>
+                        </div>
+
+                        <a href="#" class="link-senha">Esqueceu a senha?</a>
+                    </div>
+
+                    <button type="submit" class="botao-auth">Entrar</button>
+                </form>
+            </div>
+
+            <p class="auth-rodape">Não tem uma conta? <a href="/html/criar-conta.html">Criar conta</a></p>
+        </div>
+    </main>
+</body>
+</html>

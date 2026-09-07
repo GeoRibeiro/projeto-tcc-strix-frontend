@@ -73,7 +73,9 @@ document.addEventListener("click", event => {
 // PÁGINA ATUAL
 // =========================
 
-const paginaAtual = window.location.pathname.split("/").pop();
+// Servidores costumam entregar a home tanto em "/" quanto em "/index.html";
+// sem este fallback a raiz sai com nome vazio e nenhum link casa.
+const paginaAtual = window.location.pathname.split("/").pop() || "index.html";
 
 document.querySelectorAll("nav a").forEach(link => {
     const href = link.getAttribute("href");
@@ -136,3 +138,33 @@ if (elementosRevelar.length && !semAnimacao) {
         observador.observe(elemento);
     });
 }
+
+
+// =========================
+// MOSTRAR SENHA
+// =========================
+
+const botoesSenha = document.querySelectorAll(".mostrar-senha");
+
+botoesSenha.forEach(botao => {
+    botao.addEventListener("click", () => {
+        const campo = document.querySelector("#" + botao.dataset.alvo);
+
+        if (!campo) return;
+
+        const visivel = campo.type === "text";
+
+        campo.type = visivel ? "password" : "text";
+
+        botao.setAttribute(
+            "aria-label",
+            visivel ? "Mostrar senha" : "Ocultar senha"
+        );
+
+        const icone = botao.querySelector("i");
+
+        if (icone) {
+            icone.className = visivel ? "ph ph-eye" : "ph ph-eye-slash";
+        }
+    });
+});

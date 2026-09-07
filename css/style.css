@@ -14,12 +14,17 @@ main {
         flex-direction: column;
         gap: 1.25rem;
         align-items: center;
-        text-align: left;
+        /* No mobile o hero e uma coluna centralizada; o texto a esquerda so
+           volta no desktop, onde a coluna fica ao lado do mascote. */
+        text-align: center;
+        /* Respiro entre o header e o primeiro bloco do conteudo. */
+        padding-top: 2.5rem;
         margin-bottom: 12rem;
 
         .textos-intro {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 2.063rem;
             /* Impede que o titulo com <br> force a coluna a estourar a tela. */
             min-width: 0;
@@ -43,6 +48,10 @@ main {
                 span {
                     font-family: inherit;
                     font-weight: inherit;
+                }
+
+                .destaque-titulo {
+                    color: var(--cor-principal);
                 }
             }
         }
@@ -366,8 +375,11 @@ main {
     .seguranca {
         position: relative;
         overflow: visible;
-        width: 100vw;
-        margin-inline: calc(50% - 50vw);
+        /* Full-bleed que ignora o padding do main sem usar 100vw: a largura vem
+           do proprio fluxo, entao a barra de rolagem nao entra na conta e nada
+           vaza para fora da tela. */
+        width: auto;
+        margin-inline: calc(-1 * clamp(1rem, 5vw, 5rem));
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -577,6 +589,12 @@ main {
     }
 }
 
+/* No escuro o titulo do hero fica branco e so a palavra em destaque carrega o
+   ciano; --titulo-destacado tingia a frase inteira. */
+body.dark-mode main .intro-home .textos-intro #text-transform {
+    color: var(--texto-principal);
+}
+
 /* A antiga aura roxa deu lugar a uma faixa lilas continua: ela nasce no meio da
    secao da equipe e so se dissolve depois da secao de seguranca. */
 .equipe {
@@ -628,7 +646,12 @@ body.dark-mode .seguranca {
             /* 145px de recuo lateral, igual as demais secoes: alinha o bloco
                de texto do hero com o titulo da secao de desafios, logo abaixo. */
             padding-inline: calc(9.0625rem - clamp(1rem, 5vw, 5rem));
+            /* O respiro extra do mobile nao e preciso aqui: a faixa ja tem
+               altura minima propria. */
+            padding-top: 0;
             margin-bottom: 4.375rem;
+            /* Volta ao alinhamento a esquerda do design em telas largas. */
+            text-align: left;
 
             .mascote-intro {
                 /* Descola o mascote da borda direita da faixa. */
@@ -648,6 +671,7 @@ body.dark-mode .seguranca {
                 /* Largura da coluna de texto medida no mockup (86px -> 547px). */
                 width: 28.8125rem;
                 flex-shrink: 0;
+                align-items: flex-start;
                 gap: 1.75rem;
 
                 #text-transform {
@@ -912,12 +936,17 @@ body.dark-mode .seguranca {
             .img-jogo {
                 height: 100%;
                 align-self: flex-end;
+                /* O card recorta o excedente da arte, que sangra de proposito
+                   para fora da area util. */
+                overflow: hidden;
 
+                /* Altura livre em vez de 50rem fixos: o PNG recortado tem
+                   proporcao propria e esticava com a altura antiga. */
                 img {
                     margin-top: -12rem;
                     margin-right: -4rem;
-                    width: clamp(40rem, 50vw, 50rem);
-                    height: 50rem;
+                    width: clamp(30rem, 45vw, 44rem);
+                    height: auto;
                 }
             }
         }

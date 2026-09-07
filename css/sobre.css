@@ -8,8 +8,9 @@ html {
     overflow-x: clip;
 }
 
+/* O token acompanha o tema; --branco era fixo e deixava a pagina clara no escuro. */
 body {
-    background: var(--branco);
+    background: var(--background);
     overflow-x: clip;
 }
 
@@ -26,7 +27,7 @@ main {
     margin-bottom: 3rem;
 
     h4 {
-        color: #6100a4;
+        color: var(--cor-principal);
     }
 
     h2 {
@@ -82,12 +83,12 @@ main {
             .nome-pessoa {
                 font-size: 1.125rem;
                 font-weight: bold;
-                color: #6100a4;
+                color: var(--cor-principal);
             }
 
             .usuario-pessoa {
                 font-size: 1rem;
-                color: var(--quase-preto);
+                color: var(--texto-italico);
             }
         }
     }
@@ -122,7 +123,7 @@ main {
         }
 
         p {
-            color: var(--quase-preto);
+            color: var(--texto-italico);
             line-height: 1.5;
         }
     }
@@ -139,8 +140,8 @@ main {
         max-width: 70rem;
         margin: 0 auto;
         padding: 2rem 1.5rem;
-        background: rgba(97, 0, 164, 0.06);
-        border: 1px solid #e9e0f3;
+        background: var(--card-glass);
+        border: 1px solid var(--card-glass-borda);
         border-radius: 1.75rem;
 
         .linha-inputs {
@@ -158,7 +159,7 @@ main {
             label {
                 font-size: 1.125rem;
                 font-weight: bold;
-                color: rgba(123, 44, 191, 0.93);
+                color: var(--cor-principal);
             }
 
             input,
@@ -167,8 +168,8 @@ main {
                 font-family: var(--fonte-texto);
                 font-size: 1rem;
                 color: var(--texto-principal);
-                background: #fff;
-                border: 1px solid #e9e0f3;
+                background: var(--fundo-card);
+                border: 1px solid var(--card-glass-borda);
                 border-radius: 0.75rem;
                 padding: 1rem;
                 transition: border-color .2s ease, box-shadow .2s ease;
@@ -179,8 +180,8 @@ main {
 
                 &:focus {
                     outline: none;
-                    border-color: var(--roxo);
-                    box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.15);
+                    border-color: var(--cor-principal);
+                    box-shadow: 0 0 0 3px var(--card-glass-borda);
                 }
             }
 
@@ -200,15 +201,15 @@ main {
             font-size: 1.125rem;
             /* Mesmo SemiBold dos demais botoes (global.css). */
             font-weight: 600;
-            color: #fff;
-            background: #7b2cbf;
+            color: var(--branco);
+            background: var(--cor-principal);
             border: none;
             border-radius: 0.75rem;
             cursor: pointer;
             transition: background .2s ease, transform .2s ease;
 
             &:hover {
-                background: #6a30ac;
+                background: var(--cor-secundaria);
                 transform: translateY(-0.125rem);
             }
         }
@@ -275,63 +276,21 @@ main {
 }
 
 
-/* ===== Modo escuro da página Sobre nós ===== */
+/* ===== Modo escuro da página Sobre nós =====
+   O escuro do projeto e ciano; aqui so ficam os ajustes que os tokens nao
+   resolvem sozinhos. */
 body.dark-mode {
-    .titulos-secao h2 {
-        color: #fff;
-    }
-
     .quem-somos {
-        /* Brilho roxo radial suave no escuro, esmaecendo para o fundo #130f19. */
+        /* Mesmo brilho radial do claro, na cor do tema escuro. */
         &::before {
             background:
-                radial-gradient(115% 80% at 50% 40%, rgba(123, 44, 191, 0.28) 0%, rgba(123, 44, 191, 0.12) 45%, rgba(19, 15, 25, 0) 74%);
-        }
-
-        .equipe .card-pessoa {
-            .nome-pessoa {
-                color: #a844ff;
-            }
-            .usuario-pessoa {
-                color: #e1e1e1;
-            }
+                radial-gradient(115% 80% at 50% 40%, rgba(0, 193, 215, 0.18) 0%, rgba(0, 193, 215, 0.08) 45%, rgba(0, 193, 215, 0) 74%);
         }
     }
 
-    .objetivos .texto-objetivos {
-        h2 {
-            color: #fff;
-        }
-        p {
-            color: #e1e1e1;
-        }
-    }
-
-    .contato .form-contato {
-        background: rgba(97, 0, 164, 0.06);
-        border-color: rgba(204, 195, 216, 0.25);
-
-        .campo {
-            label {
-                color: #c7a4f0;
-            }
-
-            input,
-            textarea {
-                color: #fff;
-                background: #3c3541;
-                border-color: #ccc3d8;
-
-                &::placeholder {
-                    color: #b8b0c2;
-                }
-
-                &:focus {
-                    border-color: #a844ff;
-                    box-shadow: 0 0 0 3px rgba(168, 68, 255, 0.2);
-                }
-            }
-        }
+    /* No claro o placeholder cinza funciona; no escuro precisa clarear. */
+    .contato .form-contato .campo :is(input, textarea)::placeholder {
+        color: var(--texto-italico);
     }
 }
 

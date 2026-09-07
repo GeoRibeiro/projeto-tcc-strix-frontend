@@ -97,7 +97,10 @@ body {
     --sombra-footer: rgba(60, 53, 65, 0.25);
 }
 
-body.dark-mode {
+/* As variaveis do escuro moram no :root, e nao no proprio body: quando o body
+   declara e consome a mesma variavel, o navegador nao repinta o fundo dele ao
+   alternar o tema. */
+:root:has(body.dark-mode) {
 
     --background: #181818;
     --background-header: #202020;
@@ -302,14 +305,23 @@ header {
                 align-items: center;
 
                 .login {
-                    button {
+                    a {
                         width: 10.375rem;
                         height: 2.625rem;
+                        text-decoration: none;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
                         border: 0.125rem solid var(--cor-principal);
                         box-shadow: 0 0 0.338rem 0.125rem var(--cor-principal);
                         border-radius: 1rem;
-                        color: var(--cor-principal);
                         background: var(--background-header);
+
+                        h4 {
+                            color: var(--cor-principal);
+                        }
                     }
                 }
 
