@@ -83,7 +83,6 @@ main{
                 padding: 1.5rem;
                 transition: .3s ease;
 
-
                 .texto-card {
                     width: 100%;
                     display: flex;
@@ -94,8 +93,6 @@ main{
                             color: var(--cor-principal);
                         }
 
-                        /* Titulo de card segue o padrao da home: Montserrat
-                           SemiBold em caixa normal, sem o espacamento de rotulo. */
                         h4 {
                             color: var(--texto-principal);
                             margin-top: 1.875rem;
@@ -118,8 +115,6 @@ main{
     }
 
     .tutorial-video{
-        /* Ocupa a largura do fluxo: com 100vw a barra de rolagem entrava na
-           conta e a faixa vazava para fora da tela. */
         width: auto;
         display: flex;
         gap: 1.625rem;
@@ -176,7 +171,6 @@ main{
                 border-left: .625rem solid var(--roxo);
 
                 transition: .3s ease;
-
 
                 i {
                     width: 3rem;
@@ -321,8 +315,7 @@ body.dark-mode main .voce-recebe .cards-recebe .card-recebe-isso:hover {
                 max-width: 50rem;
                 #text-transform{
                     font-size: 4.063rem;
-                    /* So Cal Sans, sem fallback: com a Montserrat na pilha o titulo
-                       cairia nela e sairia mais grosso que o design. */
+
                     font-family: "Cal Sans";
                     line-height: 1;
                     font-weight: 400;

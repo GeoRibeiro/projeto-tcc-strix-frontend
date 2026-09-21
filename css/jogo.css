@@ -1,0 +1,199 @@
+@import "./global.css";
+
+body {
+    background: var(--background);
+}
+
+main {
+    padding-inline: clamp(1rem, 5vw, 5rem);
+    padding-top: 2.5rem;
+    padding-bottom: 4rem;
+}
+
+main {
+    .jogo-topo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        text-align: center;
+        margin-bottom: 4rem;
+
+        .texto-jogo-topo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+            max-width: 28rem;
+
+            h4.label-suave {
+                color: var(--cor-principal);
+                font-size: 1.1875rem;
+            }
+
+            h2 {
+                margin-block: 0.25rem 0.5rem;
+                font-size: 2.75rem;
+            }
+
+            p {
+                margin-bottom: 0.5rem;
+                font-size: 1.0625rem;
+            }
+
+            button {
+                background: var(--destaque);
+                border: none;
+                border-radius: 0.75rem;
+                padding: 1rem 1.75rem;
+
+                a {
+                    text-decoration: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.75rem;
+                    white-space: nowrap;
+
+                    p {
+                        color: var(--branco);
+                        font-size: 1.0625rem;
+                        line-height: 1.3;
+                    }
+
+                    i {
+                        font-size: 1.375rem;
+                        color: var(--branco);
+                    }
+                }
+            }
+        }
+
+        .img-protagonistas {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: min(28rem, 90vw);
+                height: auto;
+            }
+        }
+    }
+
+    .trailer-jogo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        margin-bottom: 3.5rem;
+
+        h4.label-suave {
+            color: var(--cor-principal);
+        }
+
+        .player-trailer {
+            position: relative;
+            display: block;
+            width: 100%;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: var(--card-glass-sombra);
+
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            i {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 4rem;
+                color: var(--branco);
+                filter: drop-shadow(0 0.25rem 0.75rem rgba(0, 0, 0, 0.35));
+                transition: transform 0.3s ease;
+            }
+
+            &:hover i {
+                transform: translate(-50%, -50%) scale(1.08);
+            }
+        }
+    }
+
+    .screenshots-jogo {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        h4.label-suave {
+            color: var(--cor-principal);
+        }
+
+        .grid-screenshots {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 1rem;
+                box-shadow: var(--card-glass-sombra);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    main {
+        .jogo-topo {
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 30rem;
+            padding-inline: clamp(1rem, 5vw, 5rem);
+            margin-bottom: 5rem;
+            gap: 6rem;
+
+            .texto-jogo-topo {
+                align-items: center;
+                width: 26rem;
+                flex-shrink: 0;
+
+                h4.label-suave {
+                    white-space: nowrap;
+                }
+
+                h2 {
+                    font-size: 3.25rem;
+                }
+
+                p {
+                    font-size: 1.125rem;
+                }
+            }
+
+            .img-protagonistas {
+                width: auto;
+                flex-shrink: 0;
+
+                img {
+                    width: clamp(22rem, 32vw, 30rem);
+                }
+            }
+        }
+
+        .trailer-jogo,
+        .screenshots-jogo {
+            padding-inline: calc(9.0625rem - clamp(1rem, 5vw, 5rem));
+        }
+
+        .screenshots-jogo .grid-screenshots {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}

@@ -14,10 +14,9 @@ main {
         flex-direction: column;
         gap: 1.25rem;
         align-items: center;
-        /* No mobile o hero e uma coluna centralizada; o texto a esquerda so
-           volta no desktop, onde a coluna fica ao lado do mascote. */
+
         text-align: center;
-        /* Respiro entre o header e o primeiro bloco do conteudo. */
+
         padding-top: 2.5rem;
         margin-bottom: 12rem;
 
@@ -26,25 +25,19 @@ main {
             flex-direction: column;
             align-items: center;
             gap: 2.063rem;
-            /* Impede que o titulo com <br> force a coluna a estourar a tela. */
+
             min-width: 0;
             max-width: 100%;
 
             #text-transform {
-                /* Só Cal Sans, sem fallback: com a Montserrat na pilha o titulo
-                   caia nela e saia mais grosso que o design. */
                 font-family: "Cal Sans";
-                /* Acompanha a largura da tela para nao estourar em telas estreitas. */
+
                 font-size: clamp(1.875rem, 9vw, 2.5rem);
-                /* Cal Sans so tem 400 real; qualquer valor maior sairia
-                   engrossado sinteticamente pelo navegador. */
+
                 font-weight: 400;
                 line-height: 1.15;
                 color: var(--titulo-destacado);
 
-                /* O seletor universal (*) em global.css fixa font-family em todo
-                   elemento, inclusive filhos; sem isto o span nao herda a fonte
-                   do titulo. */
                 span {
                     font-family: inherit;
                     font-weight: inherit;
@@ -226,8 +219,6 @@ main {
                 overflow: hidden;
                 box-shadow: var(--card-glass-sombra);
 
-                /* A imagem sangra ate as bordas do card: o fundo roxo dela emenda
-                   com o gradiente, sem moldura clara em volta. */
                 > img {
                     width: 100%;
                     height: 13.0625rem;
@@ -267,7 +258,7 @@ main {
                         font-size: 1.5rem;
                         text-transform: uppercase;
                         line-height: 1.1;
-                        /* Forca a quebra em duas linhas, como no design. */
+
                         max-width: 8ch;
                     }
                 }
@@ -339,7 +330,6 @@ main {
                     transform: translateY(-0.3125rem);
                 }
 
-                /* Recorte circular uniforme: as fotos chegam em proporcoes diferentes. */
                 img {
                     width: 9.375rem;
                     aspect-ratio: 1;
@@ -348,8 +338,6 @@ main {
                     border-radius: 50%;
                 }
 
-                /* Foto vertical (822x1263): o rosto fica a ~55% da altura, entao o
-                   recorte quadrado precisa descer mais que o padrao acima. */
                 img[src$="gui.jpg"] {
                     object-position: center 60%;
                 }
@@ -370,14 +358,10 @@ main {
         }
     }
 
-    /* A faixa de seguranca ocupa a largura total da viewport, com o gradiente
-       lilas sangrando para fora do padding lateral do main. */
     .seguranca {
         position: relative;
         overflow: visible;
-        /* Full-bleed que ignora o padding do main sem usar 100vw: a largura vem
-           do proprio fluxo, entao a barra de rolagem nao entra na conta e nada
-           vaza para fora da tela. */
+
         width: auto;
         margin-inline: calc(-1 * clamp(1rem, 5vw, 5rem));
         display: flex;
@@ -410,7 +394,6 @@ main {
                 z-index: 2;
             }
 
-            /* O rotulo da secao mantem o roxo usado nas demais secoes. */
             h4.label-suave {
                 color: var(--cor-principal);
             }
@@ -464,7 +447,6 @@ main {
                 margin-bottom: 2rem;
                 z-index: 1;
 
-                /* PNG recortado: fica sobre o proprio gradiente da faixa, sem moldura. */
                 img {
                     width: auto;
                     max-width: 100%;
@@ -500,7 +482,6 @@ main {
                     object-fit: cover;
                 }
 
-                /* Este titulo usa Montserrat Bold no design, nao Cal Sans. */
                 h3 {
                     font-family: var(--fonte-texto);
                     font-size: 1.75rem;
@@ -513,7 +494,7 @@ main {
                 display: flex;
                 flex-direction: column;
                 gap: 1.75rem;
-                /* Alinha os itens com o texto do titulo, nao com a foto. */
+
                 padding-left: 1.875rem;
 
                 div {
@@ -589,14 +570,10 @@ main {
     }
 }
 
-/* No escuro o titulo do hero fica branco e so a palavra em destaque carrega o
-   ciano; --titulo-destacado tingia a frase inteira. */
 body.dark-mode main .intro-home .textos-intro #text-transform {
     color: var(--texto-principal);
 }
 
-/* A antiga aura roxa deu lugar a uma faixa lilas continua: ela nasce no meio da
-   secao da equipe e so se dissolve depois da secao de seguranca. */
 .equipe {
     position: relative;
 }
@@ -614,14 +591,10 @@ body.dark-mode main .intro-home .textos-intro #text-transform {
     );
 }
 
-/* No escuro a equipe fica sobre o fundo puro: a faixa lilas do modo claro nao
-   tem equivalente aqui e so sujava a secao. */
 body.dark-mode .equipe::before {
     background: none;
 }
 
-/* O #406266 e bem mais claro que o fundo #181818, entao a mesma opacidade do
-   modo claro virava uma mancha. Aqui a faixa fica so como um respiro sutil. */
 body.dark-mode .seguranca {
     background: linear-gradient(
         180deg,
@@ -635,50 +608,40 @@ body.dark-mode .seguranca {
 @media screen and (min-width: 1024px) {
     main {
         .intro-home {
-            /* Altura medida no mockup (~830px de faixa) em vez de vincular a viewport. */
             min-height: 43.75rem;
             display: flex;
             flex-direction: row-reverse;
-            /* Texto e mascote em pontas opostas da faixa. */
+
             justify-content: space-between;
             align-items: center;
             gap: 5rem;
-            /* 145px de recuo lateral, igual as demais secoes: alinha o bloco
-               de texto do hero com o titulo da secao de desafios, logo abaixo. */
+
             padding-inline: calc(9.0625rem - clamp(1rem, 5vw, 5rem));
-            /* O respiro extra do mobile nao e preciso aqui: a faixa ja tem
-               altura minima propria. */
+
             padding-top: 0;
             margin-bottom: 4.375rem;
-            /* Volta ao alinhamento a esquerda do design em telas largas. */
+
             text-align: left;
 
             .mascote-intro {
-                /* Descola o mascote da borda direita da faixa. */
                 margin-inline-end: clamp(0.5rem, 2.5vw, 2.5rem);
 
                 img {
-                    /* O arquivo tem 1069px reais; limitar a exibição a ~512px
-                       garante 2 pixels de imagem por pixel de tela (telas retina).
-                       O coeficiente de 30vw segura a largura em telas medias, onde
-                       a coluna de texto nao encolhe (flex-shrink: 0). */
                     width: clamp(20rem, 30vw, 32rem);
                     height: auto;
                 }
             }
 
             .textos-intro {
-                /* Largura da coluna de texto medida no mockup (86px -> 547px). */
                 width: 28.8125rem;
                 flex-shrink: 0;
                 align-items: flex-start;
                 gap: 1.75rem;
 
                 #text-transform {
-                    font-size: 3.5625rem; /* 57px */
+                    font-size: 3.5625rem;
                 }
 
-                /* Quebra em tres linhas, como no design. */
                 p {
                     max-width: 25.5rem;
                 }
@@ -686,7 +649,6 @@ body.dark-mode .seguranca {
         }
 
         .desafios {
-            /* 145px de recuo lateral, igual as demais secoes do design. */
             margin-inline: calc(9.0625rem - clamp(1rem, 5vw, 5rem));
 
             section {
@@ -704,11 +666,8 @@ body.dark-mode .seguranca {
         }
 
         .video {
-            /* 145px de recuo lateral: o player alinha com os cards da secao de
-               desafios, logo acima. */
             padding-inline: calc(9.0625rem - clamp(1rem, 5vw, 5rem));
-            /* Titulo e botao a esquerda, paragrafo a direita e o player abaixo,
-               ocupando as duas colunas. */
+
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: start;
@@ -717,7 +676,6 @@ body.dark-mode .seguranca {
             .textos-video {
                 text-align: left;
 
-                /* Cabe "Como a Cupcam entende" na primeira linha, como no design. */
                 h3 {
                     max-width: 25rem;
                     margin-block: 0.375rem 0;
@@ -728,7 +686,6 @@ body.dark-mode .seguranca {
                 }
             }
 
-            /* Encostado na borda direita da secao, como no design. */
             > p {
                 max-width: 27rem;
                 margin-top: 1.75rem;
@@ -737,8 +694,7 @@ body.dark-mode .seguranca {
 
             img {
                 grid-column: 1 / -1;
-                /* Vai de ponta a ponta da secao: da borda esquerda do titulo
-                   ate a direita do paragrafo. */
+
                 width: 100%;
                 height: auto;
                 margin-block: 2.25rem 0;
@@ -749,17 +705,17 @@ body.dark-mode .seguranca {
             display: flex;
             flex-direction: column;
             gap: 2.5rem;
-            /* 145px de recuo lateral, igual as demais secoes do design. */
+
             padding-inline: calc(9.0625rem - clamp(1rem, 5vw, 5rem));
 
             section {
                 display: grid;
-                /* Proporcao medida no mockup: 433px / 325px / 325px. */
+
                 grid-template-columns: 433fr 325fr 325fr;
                 grid-template-rows: repeat(2, auto);
                 column-gap: 2.125rem;
                 row-gap: 1.75rem;
-                /* Os cards da direita ficam no topo de cada linha, sem esticar. */
+
                 align-items: start;
                 height: auto;
                 margin-bottom: 6.25rem;
@@ -770,14 +726,11 @@ body.dark-mode .seguranca {
                     height: auto;
                     box-sizing: border-box;
 
-                    /* Cresce um pouco alem da altura natural para terminar na
-                       mesma linha de base dos cards da segunda linha. */
                     > img {
                         height: 18.75rem;
                     }
                 }
 
-                /* Cada card cresce com o proprio texto, sem esticar ate o fim da linha. */
                 .card-diferencial {
                     width: 100%;
                     height: max-content;
@@ -794,7 +747,7 @@ body.dark-mode .seguranca {
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* A faixa lilas emenda direto na secao de seguranca, sem respiro branco. */
+
             margin-bottom: 0;
             padding-bottom: 3.75rem;
 
@@ -837,17 +790,16 @@ body.dark-mode .seguranca {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                /* Afasta o bloco de texto do mascote. */
+
                 gap: 10rem;
                 margin: 0;
-                /* Alinha o texto com a coluna de 145px usada nas demais secoes. */
+
                 padding: 5.5rem 8.75rem;
                 max-width: 90rem;
 
                 .textos-seguranca {
                     flex: 1;
 
-                    /* Fica em uma unica linha, como no design. */
                     h2 {
                         font-size: 2rem;
                         margin-block: 0.5rem 2.75rem;
@@ -895,13 +847,11 @@ body.dark-mode .seguranca {
             .publico {
                 width: 30.5rem;
 
-                /* No desktop o titulo cabe em uma linha, como no design. */
                 .foto-quem h3 {
                     font-size: 2rem;
                     white-space: nowrap;
                 }
 
-                /* Largura do texto medida no mockup, para as mesmas quebras. */
                 .section-textos-quem p {
                     max-width: 23.125rem;
                 }
@@ -913,18 +863,16 @@ body.dark-mode .seguranca {
             height: 30rem;
             justify-content: space-between;
             gap: 1rem;
-            /* O card comeca a 65px da borda da viewport, alem do padding do main. */
+
             margin-inline: calc(4.0625rem - clamp(1rem, 5vw, 5rem));
 
             .texto-jogo {
-                /* Texto a 98px da borda da viewport: 65px do card + 33px aqui. */
                 margin-left: 0.8125rem;
                 max-width: 28rem;
                 text-align: left;
                 gap: 1.5rem;
 
                 h2 {
-                    /* Quebra em duas linhas apos "também". */
                     max-width: 20rem;
                 }
 
@@ -936,16 +884,13 @@ body.dark-mode .seguranca {
             .img-jogo {
                 height: 100%;
                 align-self: flex-end;
-                /* O card recorta o excedente da arte, que sangra de proposito
-                   para fora da area util. */
+
                 overflow: hidden;
 
-                /* Altura livre em vez de 50rem fixos: o PNG recortado tem
-                   proporcao propria e esticava com a altura antiga. */
                 img {
-                    margin-top: -12rem;
+                    margin-top: -2rem;
                     margin-right: -4rem;
-                    width: clamp(30rem, 45vw, 44rem);
+                    width: clamp(28rem, 40vw, 38rem);
                     height: auto;
                 }
             }

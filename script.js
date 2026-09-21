@@ -1,9 +1,5 @@
 const body = document.body;
 
-// =========================
-// TEMA
-// =========================
-
 function aplicarTema() {
     const temaSalvo = localStorage.getItem("tema");
 
@@ -28,11 +24,6 @@ botoesTema.forEach(botao => {
         );
     });
 });
-
-
-// =========================
-// MENU MOBILE
-// =========================
 
 const botaoAbrir = document.querySelector("#menu-hamburguer");
 const botaoFechar = document.querySelector(".fechar-menu");
@@ -68,13 +59,6 @@ document.addEventListener("click", event => {
     }
 });
 
-
-// =========================
-// PÁGINA ATUAL
-// =========================
-
-// Servidores costumam entregar a home tanto em "/" quanto em "/index.html";
-// sem este fallback a raiz sai com nome vazio e nenhum link casa.
 const paginaAtual = window.location.pathname.split("/").pop() || "index.html";
 
 document.querySelectorAll("nav a").forEach(link => {
@@ -89,12 +73,6 @@ document.querySelectorAll("nav a").forEach(link => {
     }
 });
 
-
-// =========================
-// ANIMAÇÃO DE SCROLL
-// =========================
-
-// Blocos que ganham a entrada: as secoes diretas do main e os cards de dentro.
 const seletoresRevelar = [
     "main > div",
     "main > section",
@@ -110,7 +88,6 @@ const seletoresRevelar = [
 
 const elementosRevelar = document.querySelectorAll(seletoresRevelar.join(", "));
 
-// O primeiro bloco do main abre a pagina; anima-lo atrasaria o conteudo principal.
 const primeiroBloco = document.querySelector("main > div, main > section");
 
 const semAnimacao = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -126,7 +103,6 @@ if (elementosRevelar.length && !semAnimacao) {
     };
 
     const observador = new IntersectionObserver(aoEntrarNaTela, {
-        // Comeca a revelar um pouco antes do bloco encostar na borda da tela.
         rootMargin: "0px 0px -10% 0px",
         threshold: 0.1
     });
@@ -138,11 +114,6 @@ if (elementosRevelar.length && !semAnimacao) {
         observador.observe(elemento);
     });
 }
-
-
-// =========================
-// MOSTRAR SENHA
-// =========================
 
 const botoesSenha = document.querySelectorAll(".mostrar-senha");
 

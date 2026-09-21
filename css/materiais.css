@@ -4,8 +4,6 @@ body {
     background: var(--background);
 }
 
-/* Cal Sans so tem peso 400 real, entao o negrito do "Cup" vem da Montserrat,
-   que tem os pesos de verdade. */
 .destaque-titulo {
     font-family: var(--fonte-texto);
     font-weight: 700;
@@ -17,12 +15,10 @@ main {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        /* Respiro entre o header e o primeiro bloco do conteudo. */
+
         padding-top: 2.5rem;
         margin-bottom: 9.375rem;
 
-        /* Altura livre: o PNG recortado tem proporcao propria e a altura fixa
-           anterior o esticava. */
         img {
             width: 20rem;
             max-width: 100%;
@@ -127,7 +123,6 @@ main {
                         gap: .75rem;
                         margin-top: auto;
 
-                        
                         .preco{
                             display: flex;
                             align-items: center;
@@ -181,7 +176,6 @@ main {
         }
     }
 }
-
 
 @media (min-width: 1024px) {
     main {
@@ -242,9 +236,7 @@ main {
                 .card-tecno {
                     position: relative;
                     width: 23.75rem;
-                    /* Altura fixa cortava o texto dos cards mais longos; o
-                       minimo mantem o alinhamento da grade e o card cresce
-                       quando o conteudo pede. */
+
                     min-height: 15.5rem;
                     height: auto;
                     max-width: none;
@@ -252,7 +244,7 @@ main {
                     display: block;
                     text-align: left;
                     padding: 1.875rem 1.5rem;
-                    /* A arte sangra para fora do card e e recortada na borda. */
+
                     overflow: hidden;
 
                     .textos-card {
@@ -260,12 +252,11 @@ main {
                         z-index: 1;
                         align-items: flex-start;
                         text-align: left;
-                        /* min-height em vez de height fixa: acompanha o card
-                           quando o texto cresce e ainda empurra o preco para baixo. */
+
                         min-height: 100%;
                         justify-content: flex-start;
                         gap: 0.75rem;
-                        /* Faixa livre a direita para a arte do card. */
+
                         max-width: 60%;
 
                         h3 {
@@ -277,7 +268,6 @@ main {
                             min-height: 0;
                         }
 
-                        /* Preco e botao lado a lado na base do card. */
                         .preco-link {
                             justify-content: flex-start;
                             margin-top: auto;
@@ -296,8 +286,6 @@ main {
                         text-align: left;
                     }
 
-                    /* Arte alinhada pelo topo do bloco de texto, transbordando
-                       pela direita como no design. */
                     img {
                         position: absolute;
                         top: 50%;
@@ -305,7 +293,7 @@ main {
                         transform: translateY(-50%);
                         width: 14rem;
                         height: auto;
-                        /* Fica atras do texto caso a arte cresca demais. */
+
                         z-index: 0;
                         pointer-events: none;
                     }
@@ -316,7 +304,6 @@ main {
                     width: 33.375rem;
                 }
 
-                /* Cards largos comportam arte maior sem espremer o texto. */
                 .card-tecno:nth-child(1) img {
                     width: 19rem;
                     right: -2rem;
@@ -327,8 +314,6 @@ main {
                     right: -1.5rem;
                 }
 
-                /* Gemini: a estrela fica inteira, encostada na borda direita.
-                   A largura do card acompanha a grade (mesma do OpenCV ao lado). */
                 .card-tecno:nth-child(2) {
                     .textos-card {
                         max-width: 58%;
@@ -337,6 +322,17 @@ main {
                     img {
                         width: 11rem;
                         right: -0.5rem;
+                    }
+                }
+
+                .card-tecno:nth-child(3) {
+                    .textos-card {
+                        max-width: 58%;
+                    }
+
+                    img {
+                        width: 6.5rem;
+                        right: 0.5rem;
                     }
                 }
             }

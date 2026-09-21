@@ -10,22 +10,18 @@
     font-family: var(--fonte-texto);
 }
 
-/* Rolagem suave nos links de ancora da propria pagina. */
 html {
     scroll-behavior: smooth;
-    /* Respiro acima do alvo para o titulo nao encostar no topo da tela. */
+
     scroll-padding-top: 2rem;
 }
 
-/* Quem pediu menos animacao no sistema recebe o salto direto. */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
     }
 }
 
-/* Entrada por scroll: o elemento nasce deslocado e a classe "aparecer",
-   aplicada pelo script quando ele entra na tela, o leva para a posicao final. */
 .revelar {
     opacity: 0;
     transform: translateY(1.875rem);
@@ -37,7 +33,6 @@ html {
     transform: none;
 }
 
-/* Quem pediu menos animacao no sistema ve tudo ja posicionado. */
 @media (prefers-reduced-motion: reduce) {
     .revelar {
         opacity: 1;
@@ -57,7 +52,6 @@ body {
 }
 
 :root {
-    /* Cal Sans so tem peso 400 real; pesos maiores sao sintetizados pelo navegador. */
     --fonte-titulo: "Cal Sans", "Montserrat", sans-serif;
     --fonte-texto: "Montserrat", sans-serif;
 
@@ -71,7 +65,6 @@ body {
     --background: #FAFBFF;
     --background-header: #FFFFFF;
 
-    /* Cards glass: gradiente lilas suave + borda clara, medidos do mockup. */
     --card-glass: linear-gradient(155deg, #F5EDFC 0%, #EDE6F8 100%);
     --card-glass-borda: rgba(255, 255, 255, 0.7);
     --card-glass-sombra: 0 0.5rem 1.5rem rgba(106, 48, 172, 0.08);
@@ -97,11 +90,7 @@ body {
     --sombra-footer: rgba(60, 53, 65, 0.25);
 }
 
-/* As variaveis do escuro moram no :root, e nao no proprio body: quando o body
-   declara e consome a mesma variavel, o navegador nao repinta o fundo dele ao
-   alternar o tema. */
 :root:has(body.dark-mode) {
-
     --background: #181818;
     --background-header: #202020;
 
@@ -136,7 +125,6 @@ body.dark-mode .tema img {
     content: url("/assets/modo-claro.svg");
 }
 
-/* Titulos usam Cal Sans; textos e mini-titulos usam Montserrat (Regular/SemiBold). */
 h1,
 h2,
 h3 {
@@ -167,7 +155,6 @@ h4 {
     letter-spacing: 0.06em;
 }
 
-/* Rotulo de secao em caixa normal, com o peso leve usado no design. */
 .label-suave {
     font-size: 1.0625rem;
     font-weight: 400;
@@ -188,7 +175,6 @@ p {
     color: var(--texto-principal);
 }
 
-/* Botoes em Montserrat SemiBold, conforme o design. */
 button,
 button p,
 .login a h4,
@@ -371,17 +357,13 @@ footer {
     }
 }
 
-
-
 nav a.pagina-ativa {
     h4, p {
         color: var(--cor-principal);
     }
 }
 
-
 @media screen and (min-width: 1024px) {
-
     header {
         filter: drop-shadow(0px 3px 34.8px var(--sombra-header));
     }

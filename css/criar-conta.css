@@ -1,31 +1,16 @@
 @import "./global.css";
 
-/*
- * Tela de criar conta.
- * Estrutura espelhada em login.css: aqui a arte do mascote fica a direita
- * (".auth-invertida") e o formulario a esquerda.
- */
-
-/* Sem header e sem footer aqui, entao a pagina ocupa a tela inteira. */
-html,
-body.pagina-auth {
-    height: 100%;
-}
-
 body.pagina-auth {
     background: var(--background);
 }
 
-/* Botao de tema flutuante, ja que estas telas nao tem o header do site. */
 .tema-flutuante {
-    position: fixed;
-    top: 1.25rem;
-    right: 1.25rem;
-    z-index: 10;
     cursor: pointer;
+    line-height: 0;
 
     img {
-        width: 2rem;
+        width: 5.5rem;
+        height: auto;
         filter: drop-shadow(0 0 4px var(--cor-principal));
     }
 
@@ -36,14 +21,11 @@ body.pagina-auth {
 }
 
 .auth {
-    /* Anula o padding lateral que global.css aplica em todo main. */
     padding-inline: 0;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* ===== Faixa/arte do mascote ===== */
 .auth-arte {
     position: relative;
     display: flex;
@@ -53,42 +35,21 @@ body.pagina-auth {
     padding: 1.5rem 1.5rem 4rem;
     background: linear-gradient(160deg, #E7D3F7 0%, #DEC5F3 100%);
 
-    /* No mobile a arte e so a faixa colorida do topo; o mascote entra no desktop. */
     .auth-mascote {
         display: none;
     }
 
-    /* No mobile o logo mora na faixa; no desktop ele volta para a coluna do form. */
-    .auth-logo-mobile {
-        display: block;
-        /* Vem depois do mascote no HTML, mas abre a faixa visualmente. */
-        order: -1;
-
-        img {
-            width: 3.5rem;
-        }
-    }
-
-    .auth-boas-vindas {
+    .auth-topo-mobile {
         display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+        align-items: center;
+        justify-content: space-between;
 
-        h1 {
-            font-size: 2.25rem;
-            line-height: 1.15;
-            color: var(--cor-principal);
-        }
-
-        p {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--cor-principal);
+        .auth-logo-mobile img {
+            width: 4.5rem;
         }
     }
 }
 
-/* ===== Coluna do formulario ===== */
 .auth-form {
     position: relative;
     z-index: 1;
@@ -99,16 +60,11 @@ body.pagina-auth {
     padding: 2rem 1.5rem 2.5rem;
     background: var(--background);
 
-    /* Sobe sobre a faixa lilas para criar a curva do mockup mobile. */
     margin-top: -2.5rem;
     border-radius: 2.5rem 2.5rem 0 0;
 
-    .auth-logo {
+    .auth-topo-desktop {
         display: none;
-
-        img {
-            width: 4.3rem;
-        }
     }
 
     .auth-conteudo {
@@ -132,7 +88,6 @@ body.pagina-auth {
     }
 
     .auth-rodape {
-        margin-top: auto;
         text-align: center;
         font-size: 0.9375rem;
 
@@ -148,7 +103,6 @@ body.pagina-auth {
     }
 }
 
-/* ===== Formulario ===== */
 .form-auth {
     display: flex;
     flex-direction: column;
@@ -165,10 +119,6 @@ body.pagina-auth {
             color: var(--texto-principal);
         }
 
-        /*
-         * Input so com a linha de baixo, como no design. O padding lateral fica
-         * zerado para o placeholder alinhar com o label.
-         */
         input {
             width: 100%;
             font-family: var(--fonte-texto);
@@ -192,7 +142,6 @@ body.pagina-auth {
         }
     }
 
-    /* O olho fica dentro da linha do input, encostado na direita. */
     .campo-senha {
         position: relative;
         display: flex;
@@ -259,10 +208,7 @@ body.pagina-auth {
     }
 }
 
-
 @media screen and (min-width: 1024px) {
-
-    /* Duas colunas lado a lado ocupando a tela inteira. */
     .auth {
         flex-direction: row;
         height: 100vh;
@@ -270,15 +216,10 @@ body.pagina-auth {
         overflow: hidden;
     }
 
-    /* Nesta tela a arte fica a direita, ao contrario do login. */
     .auth {
         flex-direction: row-reverse;
     }
 
-    /*
-     * As artes do mascote ja vem com o fundo roxo embutido, entao a coluna
-     * inteira e a propria imagem: "cover" preenche a altura da tela sem barra.
-     */
     .auth-arte {
         flex: 1 1 45%;
         align-items: center;
@@ -295,16 +236,14 @@ body.pagina-auth {
             object-fit: cover;
         }
 
-        /* Textos de boas-vindas e logo da faixa so existem na versao mobile. */
-        .auth-boas-vindas,
-        .auth-logo-mobile {
+        .auth-topo-mobile {
             display: none;
         }
     }
 
     .auth-form {
         flex: 1 1 55%;
-        /* A coluna rola sozinha se a tela for muito baixa, sem esticar a pagina. */
+
         height: 100%;
         overflow-y: auto;
         justify-content: flex-start;
@@ -313,17 +252,16 @@ body.pagina-auth {
         margin-top: 0;
         border-radius: 0;
 
-        /* Logo ancorada no inicio da coluna, alinhada com o formulario. */
-        .auth-logo {
-            display: block;
-            align-self: flex-start;
+        .auth-topo-desktop {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-            img {
+            .auth-logo img {
                 width: 3.5rem;
             }
         }
 
-        /* Ocupa a sobra e centraliza o formulario verticalmente. */
         .auth-conteudo {
             max-width: 26rem;
             width: 100%;
@@ -335,23 +273,20 @@ body.pagina-auth {
         .auth-titulos {
             text-align: center;
         }
+
+        .auth-rodape {
+            margin-top: auto;
+        }
     }
 
-    /* A coluna do formulario usa um lilas bem claro, como no mockup. */
     .auth-form {
         background: var(--background);
     }
 }
 
-
-/* ===== Modo escuro =====
- * Segue o padrao do site: o ciano dos tokens no lugar do roxo do modo claro.
- * So ficam aqui os ajustes que os tokens nao resolvem sozinhos.
- */
 body.dark-mode.pagina-auth {
-    /* Faixa do topo no mobile, na cor do tema escuro. */
     .auth-arte {
-        background: linear-gradient(160deg, #24393C 0%, #1B2C2F 100%);
+        background: linear-gradient(160deg, #1A1A1A 0%, #0D0D0D 100%);
     }
 
     .form-auth .campo input {

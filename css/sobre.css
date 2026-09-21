@@ -1,14 +1,11 @@
-/*teste*/
 
 
 @import "./global.css";
 
-/* Evita scroll horizontal por causa do fundo full-bleed (100vw). */
 html {
     overflow-x: clip;
 }
 
-/* O token acompanha o tema; --branco era fixo e deixava a pagina clara no escuro. */
 body {
     background: var(--background);
     overflow-x: clip;
@@ -18,7 +15,6 @@ main {
     padding-bottom: 5rem;
 }
 
-/* Cabeçalho de seção reutilizável (subtítulo roxo + título). */
 .titulos-secao {
     text-align: center;
     display: flex;
@@ -35,16 +31,10 @@ main {
     }
 }
 
-/* ===== Quem somos / equipe ===== */
 .quem-somos {
     position: relative;
     padding-block: 4rem;
 
-    /*
-     * Fundo desfocado full-bleed: ancorado à viewport com calc(50% - 50vw),
-     * ignora o padding do main e ocupa a largura toda da tela. Radial suave
-     * concentra o roxo atrás das fotos e esmaece para as bordas.
-     */
     &::before {
         content: "";
         position: absolute;
@@ -94,7 +84,6 @@ main {
     }
 }
 
-/* ===== Objetivos ===== */
 .objetivos {
     display: flex;
     flex-direction: column;
@@ -129,7 +118,6 @@ main {
     }
 }
 
-/* ===== Contato / formulário ===== */
 .contato {
     padding-block: 4rem;
 
@@ -199,7 +187,7 @@ main {
             margin-top: 0.5rem;
             font-family: var(--fonte-texto);
             font-size: 1.125rem;
-            /* Mesmo SemiBold dos demais botoes (global.css). */
+
             font-weight: 600;
             color: var(--branco);
             background: var(--cor-principal);
@@ -216,7 +204,6 @@ main {
     }
 }
 
-
 @media (min-width: 1024px) {
     .titulos-secao {
         margin-bottom: 3.75rem;
@@ -226,7 +213,6 @@ main {
         padding-block: 3.5rem 5rem;
 
         .equipe {
-            /* Largura para caber exatamente 3 cards por linha (3+2 como no Figma). */
             max-width: 44rem;
             gap: 3.5rem 4rem;
 
@@ -275,20 +261,14 @@ main {
     }
 }
 
-
-/* ===== Modo escuro da página Sobre nós =====
-   O escuro do projeto e ciano; aqui so ficam os ajustes que os tokens nao
-   resolvem sozinhos. */
 body.dark-mode {
     .quem-somos {
-        /* Mesmo brilho radial do claro, na cor do tema escuro. */
         &::before {
             background:
                 radial-gradient(115% 80% at 50% 40%, rgba(0, 193, 215, 0.18) 0%, rgba(0, 193, 215, 0.08) 45%, rgba(0, 193, 215, 0) 74%);
         }
     }
 
-    /* No claro o placeholder cinza funciona; no escuro precisa clarear. */
     .contato .form-contato .campo :is(input, textarea)::placeholder {
         color: var(--texto-italico);
     }

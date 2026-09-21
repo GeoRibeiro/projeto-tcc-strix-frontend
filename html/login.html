@@ -9,18 +9,19 @@
     <title>Login — Cupcam</title>
 </head>
 <body class="pagina-auth">
-    <div class="tema tema-flutuante">
-        <img src="/assets/modo-escuro.svg" alt="Alternar entre modo claro e escuro">
-    </div>
-
     <main class="auth">
-        <!-- No desktop esta coluna vira a arte lateral; no mobile ela vira a faixa do topo. -->
         <div class="auth-arte">
-            <img src="/assets/mascote/mascote-dormindo.png" alt="Mascote da Cupcam dormindo" class="auth-mascote">
+            <div class="auth-topo-mobile">
+                <a href="/index.html" class="auth-logo auth-logo-mobile">
+                    <img src="/assets/logo.png" alt="Logo da equipe Strix">
+                </a>
 
-            <a href="/index.html" class="auth-logo auth-logo-mobile">
-                <img src="/assets/logo.png" alt="Logo da equipe Strix">
-            </a>
+                <div class="tema tema-flutuante">
+                    <img src="/assets/modo-escuro.svg" alt="Alternar entre modo claro e escuro">
+                </div>
+            </div>
+
+            <img src="/assets/mascote/mascote-dormindo.png" alt="Mascote da Cupcam dormindo" class="auth-mascote">
 
             <div class="auth-boas-vindas">
                 <h1>Bem-vindo de Volta!</h1>
@@ -29,13 +30,20 @@
         </div>
 
         <div class="auth-form">
-            <a href="/index.html" class="auth-logo">
-                <img src="/assets/logo.png" alt="Logo da equipe Strix">
-            </a>
+            <div class="auth-topo-desktop">
+                <a href="/index.html" class="auth-logo">
+                    <img src="/assets/logo.png" alt="Logo da equipe Strix">
+                </a>
+
+                <div class="tema tema-flutuante">
+                    <img src="/assets/modo-escuro.svg" alt="Alternar entre modo claro e escuro">
+                </div>
+            </div>
 
             <div class="auth-conteudo">
                 <div class="auth-titulos">
-                    <h2>Bem Vindo de Volta!</h2>
+                    <h2 class="titulo-mobile">Entrar</h2>
+                    <h2 class="titulo-desktop">Bem Vindo de Volta!</h2>
                     <p>Acesse sua conta para analisar suas aulas</p>
                 </div>
 
