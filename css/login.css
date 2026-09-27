@@ -254,6 +254,39 @@ body.pagina-auth {
             cursor: not-allowed;
             transform: none;
         }
+
+        /* Enviando: so' o spinner, sem frase (ver mostrarCarregando em
+           js/login.js). Opacidade cheia pra nao parecer botao desligado. */
+        &.carregando {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            cursor: progress;
+        }
+    }
+
+    .botao-spinner {
+        width: 1.375rem;
+        height: 1.375rem;
+        border: 0.1875rem solid rgba(255, 255, 255, 0.35);
+        border-top-color: var(--branco);
+        border-radius: 50%;
+        animation: botao-girar 0.8s linear infinite;
+    }
+}
+
+@keyframes botao-girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Quem pediu menos movimento ainda precisa saber que algo esta acontecendo:
+   o spinner gira devagar em vez de parar. */
+@media (prefers-reduced-motion: reduce) {
+    .botao-spinner {
+        animation-duration: 2.4s;
     }
 }
 
