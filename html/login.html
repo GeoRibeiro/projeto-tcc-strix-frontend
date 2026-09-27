@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="/css/login.css">
     <script src="/script.js" defer></script>
+    <script src="/js/login-config.js" defer></script>
     <script src="/js/login.js" defer></script>
 
     <meta charset="UTF-8">
@@ -65,14 +66,15 @@
                             </button>
                         </div>
 
-                        <a href="#" class="link-senha">Esqueceu a senha?</a>
+                        <button type="button" class="link-senha">Esqueceu a senha?</button>
+                        <p id="aviso-senha" class="auth-aviso" aria-live="polite"></p>
                     </div>
 
                     <button type="submit" class="botao-auth">Entrar</button>
                 </form>
             </div>
 
-            <p class="auth-rodape">Não tem uma conta? <a href="/html/criar-conta.html">Criar conta</a></p>
+            <p class="auth-rodape">Não tem conta? Peça acesso à coordenação.</p>
         </div>
     </main>
 </body>

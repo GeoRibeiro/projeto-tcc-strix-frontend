@@ -196,17 +196,36 @@ body.pagina-auth {
         }
     }
 
+    /* E' um <button> (nao navega), com cara do link que era antes. */
     .link-senha {
         align-self: flex-end;
         margin-top: 0.5rem;
+        padding: 0;
+        font-family: var(--fonte-texto);
         font-size: 0.875rem;
         font-weight: 600;
         color: var(--cor-principal);
+        background: none;
+        border: none;
+        cursor: pointer;
         text-decoration: none;
     }
 
     .link-senha:hover {
         text-decoration: underline;
+    }
+
+    .link-senha:disabled {
+        cursor: not-allowed;
+        text-decoration: none;
+    }
+
+    .auth-aviso {
+        align-self: flex-end;
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--texto-principal);
+        text-align: right;
     }
 
     .botao-auth {
@@ -228,6 +247,12 @@ body.pagina-auth {
         &:hover {
             background: var(--cor-secundaria);
             transform: translateY(-0.125rem);
+        }
+
+        &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
         }
     }
 }
@@ -327,8 +352,14 @@ body.dark-mode.pagina-auth {
     }
 }
 
+/* Contraste AA (>= 4,5:1) contra --background:
+   claro #b42318 sobre #FAFBFF ~ 6,36:1; escuro #ff7b7b sobre #181818 ~ 7,08:1. */
 .auth-erro {
-    color: #d64545;
+    color: #b42318;
     font-size: 0.875rem;
     margin: 0.5rem 0;
+}
+
+body.dark-mode .auth-erro {
+    color: #ff7b7b;
 }
