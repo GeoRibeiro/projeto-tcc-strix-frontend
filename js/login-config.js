@@ -13,11 +13,11 @@
 
 // Preencher com a URL do Render (API do CUPCAM), ex. "https://....onrender.com".
 // Sem barra no final. Vazio = login desligado em producao.
-const CUPCAM_API_URL_PRODUCAO = "";
+const CUPCAM_API_URL_PRODUCAO = "https://cupcam-api.onrender.com";
 
 // Preencher com a URL da Vercel (app Next do CUPCAM), ex. "https://....vercel.app".
 // Sem barra no final. Vazio = login desligado em producao.
-const APP_URL_PRODUCAO = "";
+const APP_URL_PRODUCAO = "https://cupcam-app.vercel.app";
 
 const CUPCAM_API_URL_DEV = "http://127.0.0.1:8000";
 const APP_URL_DEV = "http://localhost:3000";
