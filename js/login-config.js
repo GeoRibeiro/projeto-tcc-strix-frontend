@@ -13,7 +13,9 @@
 
 // Preencher com a URL do Render (API do CUPCAM), ex. "https://....onrender.com".
 // Sem barra no final. Vazio = login desligado em producao.
-const CUPCAM_API_URL_PRODUCAO = "https://cupcam-api.onrender.com";
+// Virginia desde 28/09/2026: do lado do banco (Turso aws-us-east-1). O servico
+// antigo em Oregon (cupcam-api.onrender.com) ficou so' de reserva.
+const CUPCAM_API_URL_PRODUCAO = "https://cupcam-api-virginia.onrender.com";
 
 // Preencher com a URL da Vercel (app Next do CUPCAM), ex. "https://....vercel.app".
 // Sem barra no final. Vazio = login desligado em producao.
