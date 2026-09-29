@@ -1,7 +1,12 @@
 /**
- * Login de verdade (fatia 1). Chama a API do CUPCAM direto do navegador --
- * rota /auth/login nao exige X-API-Key de proposito (ver spec), entao nao ha
- * chave nenhuma pra proteger aqui.
+ * Login de verdade. Envia email e senha ao APP do CUPCAM (Vercel), e nao mais
+ * direto a API do Render.
+ *
+ * POR QUE (29/09/2026): a API roda no plano gratuito do Render, que hiberna e
+ * leva 30-60 s pra acordar. Antes a pessoa ficava AQUI, com o botao girando,
+ * ate' a API responder. Agora o formulario vai direto pro app, que esta sempre
+ * de pe: ele guarda as credenciais cifradas por ate' 2 min e mostra a tela
+ * "Servidores ligando" com um cronometro enquanto tenta o login.
  *
  * As URLs da API e do app vem de js/login-config.js (resolverConfigLogin),
  * que precisa ser carregado antes deste arquivo.
@@ -10,54 +15,16 @@
  *   1. O usuario chega aqui vindo de {APP}/entrar/iniciar, que gera um
  *      `state`, grava num cookie do app e manda pra ca com ?state=...
  *   2. Sem `state` na URL, mandamos pra /entrar/iniciar pra gerar um.
- *   3. No sucesso, devolvemos token + o MESMO state pro app, que confere
- *      contra o cookie antes de aceitar o token.
+ *   3. O formulario leva o MESMO state pro app, que o confere contra o
+ *      cookie antes de usar as credenciais.
  */
 
-const MENSAGEM_ERRO_GENERICO = "Não foi possível entrar agora. Tente de novo.";
-const MENSAGEM_ERRO_REDE = "Não foi possível falar com o servidor. Confira sua conexão e tente de novo.";
 const MENSAGEM_NAO_CONFIGURADO = "Login indisponível: o site ainda não foi configurado para produção.";
 const MENSAGEM_ESQUECEU_SENHA = "Peça à coordenação para redefinir sua senha.";
 const TEXTO_BOTAO = "Entrar";
 // So' pro leitor de tela: na tela o botao mostra apenas o spinner, sem frase.
 const ROTULO_BOTAO_ENVIANDO = "Entrando";
 const ID_ERRO = "auth-erro";
-
-/**
- * A API roda no plano gratuito do Render, que hiberna e leva 30-60 s pra
- * acordar. Nesse meio tempo o balanceador dele pode responder 502/503/504 ou
- * derrubar a conexao -- nao e' erro de verdade, e' o servidor ligando. Por
- * isso esses casos sao tentados de novo em silencio (so' o spinner girando)
- * ate este teto; so' depois disso a pessoa ve uma mensagem.
- */
-const TETO_ESPERA_SERVIDOR_MS = 90_000;
-const INTERVALO_NOVA_TENTATIVA_MS = 3_000;
-const STATUS_SERVIDOR_LIGANDO = [502, 503, 504];
-
-/**
- * Traduz o status HTTP de uma resposta de erro do /auth/login em mensagem.
- * A mensagem nao pode afirmar uma causa que o status nao prova: um 500 com a
- * API fria no Render NAO e' "senha invalida".
- *
- * @param {number} status
- * @returns {{mensagem: string, camposInvalidos: boolean}}
- *   `camposInvalidos` indica se faz sentido marcar email/senha com aria-invalid.
- */
-function interpretarErroLogin(status) {
-  if (status === 401) {
-    return { mensagem: "Email ou senha inválidos.", camposInvalidos: true };
-  }
-  if (status === 429) {
-    return { mensagem: "Muitas tentativas. Aguarde alguns minutos e tente de novo.", camposInvalidos: false };
-  }
-  if (status === 400 || status === 422) {
-    return { mensagem: "Confira o email e a senha digitados.", camposInvalidos: true };
-  }
-  if (status >= 500) {
-    return { mensagem: "O servidor está com problema agora. Tente de novo em instantes.", camposInvalidos: false };
-  }
-  return { mensagem: MENSAGEM_ERRO_GENERICO, camposInvalidos: false };
-}
 
 /**
  * Le o `state` da query string. String vazia/so espacos conta como ausente.
@@ -68,27 +35,6 @@ function interpretarErroLogin(status) {
 function lerStateDaUrl(search) {
   const state = new URLSearchParams(search).get("state");
   return state && state.trim() ? state : null;
-}
-
-/**
- * Monta a URL de volta pro app. Os dois valores vao codificados porque vem
- * de fora (servidor e query string).
- *
- * @param {string} appUrl
- * @param {string} token
- * @param {string} state
- * @returns {string}
- */
-function montarUrlEntrada(appUrl, token, state) {
-  return `${appUrl}/entrar?token=${encodeURIComponent(token)}&state=${encodeURIComponent(state)}`;
-}
-
-/**
- * @param {unknown} token
- * @returns {boolean} true so para string nao vazia.
- */
-function tokenValido(token) {
-  return typeof token === "string" && token.trim() !== "";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -124,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (evento.persisted) liberarBotao(botao);
   });
 
-  formulario.addEventListener("submit", async (evento) => {
+  formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
     if (botao.disabled) return;
 
@@ -142,53 +88,24 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Antes do await: protege contra duplo clique/enter.
+    // Protege contra duplo clique/enter enquanto a pagina troca.
     mostrarCarregando(botao);
 
-    let resposta;
-    try {
-      resposta = await enviarLoginEsperandoServidor(config.apiUrl, { email, senha });
-    } catch {
-      // Rede fora do ar (ou servidor que nao acordou dentro do teto).
-      falhar(MENSAGEM_ERRO_REDE);
-      return;
-    }
+    // Envio NATIVO do formulario (nao fetch): o navegador navega pro app na
+    // hora, levando email, senha e state no corpo do POST — nunca na URL.
+    // O `state` entra como campo oculto; os dois campos ja' tem `name`.
+    const campoState = document.createElement("input");
+    campoState.type = "hidden";
+    campoState.name = "state";
+    campoState.value = state;
+    formulario.append(campoState);
+    campoEmail.value = email;
 
-    if (!resposta.ok) {
-      const { mensagem, camposInvalidos } = interpretarErroLogin(resposta.status);
-      falhar(mensagem, camposInvalidos ? [campoEmail, campoSenha] : []);
-      if (camposInvalidos && (resposta.status === 400 || resposta.status === 422)) {
-        campoEmail.focus();
-      }
-      return;
-    }
-
-    let token;
-    try {
-      ({ token } = await resposta.json());
-    } catch {
-      // Corpo nao-JSON num 2xx: nao e' problema de rede nem de senha.
-      falhar(MENSAGEM_ERRO_GENERICO);
-      return;
-    }
-
-    if (!tokenValido(token)) {
-      falhar(MENSAGEM_ERRO_GENERICO);
-      return;
-    }
-
-    // Sucesso: o botao fica travado enquanto a navegacao acontece.
-    window.location.href = montarUrlEntrada(config.appUrl, token, state);
+    formulario.method = "post";
+    formulario.action = `${config.appUrl}/entrar/credenciais`;
+    // submit() nao dispara o evento "submit" de novo (sem laco).
+    formulario.submit();
   });
-
-  /**
-   * Caminho unico de erro depois do envio: mostra a mensagem e so entao
-   * devolve o botao.
-   */
-  function falhar(mensagem, camposInvalidos = []) {
-    mostrarErro(mensagem, camposInvalidos);
-    liberarBotao(botao);
-  }
 });
 
 /**
@@ -198,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
  * GET em /auth/login: a rota so' aceita POST, entao a resposta e' um 405
  * inofensivo -- nao tenta login nem conta no limite de tentativas.
  * `no-cors` porque a resposta nao interessa, so' o servidor ter recebido.
- * Falha e' ignorada: o envio de verdade tem as proprias novas tentativas.
+ * Falha e' ignorada: quem insiste ate' a API responder e' a tela de espera do app.
  *
  * @param {string} apiUrl
  */
@@ -206,45 +123,6 @@ function acordarServidor(apiUrl) {
   fetch(`${apiUrl}/auth/login`, { method: "GET", mode: "no-cors", cache: "no-store" }).catch(
     () => {},
   );
-}
-
-/**
- * POST /auth/login com novas tentativas enquanto o servidor esta ligando
- * (ver TETO_ESPERA_SERVIDOR_MS). Qualquer outra resposta -- sucesso, 401,
- * 429, 500 -- volta na hora pra quem chamou decidir.
- *
- * @param {string} apiUrl
- * @param {{email: string, senha: string}} credenciais
- * @returns {Promise<Response>}
- * @throws {TypeError} se a rede falhar ate o teto acabar.
- */
-async function enviarLoginEsperandoServidor(apiUrl, credenciais) {
-  const limite = Date.now() + TETO_ESPERA_SERVIDOR_MS;
-
-  for (;;) {
-    let resposta;
-    try {
-      resposta = await fetch(`${apiUrl}/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(credenciais),
-      });
-    } catch (erro) {
-      // fetch so rejeita por falha de rede/CORS/bloqueio -- nunca por status.
-      if (Date.now() >= limite) throw erro;
-      await esperar(INTERVALO_NOVA_TENTATIVA_MS);
-      continue;
-    }
-
-    if (!STATUS_SERVIDOR_LIGANDO.includes(resposta.status) || Date.now() >= limite) {
-      return resposta;
-    }
-    await esperar(INTERVALO_NOVA_TENTATIVA_MS);
-  }
-}
-
-function esperar(ms) {
-  return new Promise((resolver) => setTimeout(resolver, ms));
 }
 
 /**
